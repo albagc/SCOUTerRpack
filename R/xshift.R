@@ -5,7 +5,7 @@
 #' operation results as a combination of two main directions: the direction of maximum gradient for the SPE (weighted by the parameter b) and
 #' the direction of the projection of the observation on the model (weighted by the parameter a).
 #'
-#' @param X A vector or matrix with observations that will be shifted
+#' @param X Vector or matrix with observations that will be shifted
 #' @param P Loading matrix of the PCA model according to which the shfit will be performed.
 #' @param a A number or vector tuning the amount of the shift for each observation from X in the direction of the x's projection.
 #' @param b A number tuning the amount of the shift for each observation from X in the direction of the x's residual.

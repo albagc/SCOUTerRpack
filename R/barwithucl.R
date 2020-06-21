@@ -17,7 +17,6 @@
 #' @export
 barwithucl <- function(x, iobs, ucl, plotname = "", ylabelname = ""){
   df.plot <- data.frame(value = x[iobs], ucl = ucl, obs = iobs)
-  pal.aas <- pal_aaas()
   barobj <- ggplot(df.plot) + geom_col(aes(x = iobs, y = value), alpha = 0.6,
                                            width = 0.75, fill = "blue", show.legend = FALSE) +
     geom_hline(aes(yintercept = ucl), linetype = 2, colour = "red", size = 0.75, show.legend = TRUE) +

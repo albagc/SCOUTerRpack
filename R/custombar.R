@@ -18,7 +18,6 @@
 
 custombar <- function(X, iobs, plotname = "", xlabelname = "Variables"){
   df.plot <- data.frame(contribution = X[iobs,], element = seq(1,length(X[iobs,]), by = 1))
-  pal.aas <- pal_aaas()
   ymax <- max(abs(X))
   ggplot(df.plot) + geom_col(aes(x = element, y = contribution, alpha = 0.6),
                              width = 0.75, fill = "blue", show.legend = FALSE) +
