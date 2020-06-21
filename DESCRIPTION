@@ -1,0 +1,16 @@
+Package: SCOUTer
+Title: Simulation of Controlled OUTliers
+Version: 0.0.0.9000
+Authors@R: c(
+person(given = "Alba", family = "González", role = "cre", email = "algonceb@upv.es"),
+person(given = "Abel", family = "Folch-Fortuny", role = "aut"),
+person(given = "Francisco", family = "Arteaga", role = "aut"),
+person(given = "Alberto", family = "Ferrer", role = "aut", email = "aferrer@eio.upv.es"))
+Description: SCOUTer enables the user to control in a precise way the outlying properties of simulated data.
+This is possible by controlling the pair of properties that define outliers: the Squared Prediction Error (SPE) and the
+Hotelling's . By setting the desired target values to these statistics, the user can obtain all types of outliers.
+License: file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.0
