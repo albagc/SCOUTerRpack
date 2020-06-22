@@ -1,5 +1,7 @@
 #'
-#'Bar plot with with customized title and labels. Y-Axis limits are fixed
+#'custombar
+#'
+#'Bar plot with customized title and labels. Y-Axis limits are fixed
 #'according to the range of the values in X.
 #'
 #' @param X matrix with observations as row vectors.

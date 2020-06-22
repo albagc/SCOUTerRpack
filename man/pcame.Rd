@@ -2,7 +2,7 @@
 % Please edit documentation in R/pcame.R
 \name{pcame}
 \alias{pcame}
-\title{Projection of X onto a PCA model.}
+\title{pcame}
 \usage{
 pcame(X, pcaref)
 }
@@ -20,6 +20,9 @@ each observation of \code{X}), \code{T2matrix} (matrix with the contributions of
 and \code{Xrec} (matrix with the reconstructed part of \code{X}, i.e. the part of \code{X} explained by the PCA model).
 }
 \description{
+Projection of X onto a PCA model.
+}
+\details{
 \code{pcame} performs the projection of the data in X onto the PCA model stored as a list of parameters. It returns the projection
 of the observations in X, along with the SPE, Hotelling's T^2_A, contribution elements and the reconstruction of X obtained by the
 PCA model.

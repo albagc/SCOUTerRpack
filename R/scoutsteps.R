@@ -1,4 +1,6 @@
 #'
+#' scoutsteps
+#'
 #' Shift of an array following a step-wise pattern.
 #'
 #' @param X Matrix with observations that will be shifted as rows.

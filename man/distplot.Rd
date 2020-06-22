@@ -2,10 +2,7 @@
 % Please edit documentation in R/distplot.R
 \name{distplot}
 \alias{distplot}
-\title{Returns the distance plot according to the input arguments. Coordinates are expressed
-in terms of the Hotelling's T^2 (x-axis) and the Squared Prediction Error (y-axis)
-obtained projecting X on the provided pca model. Observations can be identified by the obstag
-input argument.}
+\title{distplot}
 \usage{
 distplot(
   X,
@@ -28,8 +25,10 @@ observation (\code{0} or \code{1}). Default value set to \code{matrix(0, nrow(X)
 ggplot object with the distance plot.
 }
 \description{
-Returns the distance plot according to the input arguments. Coordinates are expressed
-in terms of the Hotelling's T^2 (x-axis) and the Squared Prediction Error (y-axis)
-obtained projecting X on the provided pca model. Observations can be identified by the obstag
-input argument.
+Returns the distance plot providing a dataset and a pca model.
+}
+\details{
+Coordinates are expressed in terms of the Hotelling's T^2 (x-axis) and the Squared Prediction
+Error (y-axis) obtained projecting X on the provided pca model.
+Observations can be identified by the obstag input argument.
 }

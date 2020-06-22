@@ -2,8 +2,7 @@
 % Please edit documentation in R/barwithucl.R
 \name{barwithucl}
 \alias{barwithucl}
-\title{Single bar plot with Upper Control Limis. Customized title and labels.
-Y-Axis limits are fixed according to the range of the values in x.}
+\title{barwithucl}
 \usage{
 barwithucl(
   x,

@@ -2,9 +2,7 @@
 % Please edit documentation in R/xshift.R
 \name{xshift}
 \alias{xshift}
-\title{Shift of an observation. The performed operation results as a combination of two main directions: the direction of
-maximum gradient for the SPE (weighted by the parameter b) and the direction of the projection of the observation
-on the model (weighted by the parameter a).}
+\title{xshift}
 \usage{
 xshift(X, P, a, b)
 }

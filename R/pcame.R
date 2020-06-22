@@ -1,4 +1,6 @@
 #'
+#' pcame
+#'
 #' Projection of X onto a PCA model.
 #'
 #' \code{pcame} performs the projection of the data in X onto the PCA model stored as a list of parameters. It returns the projection

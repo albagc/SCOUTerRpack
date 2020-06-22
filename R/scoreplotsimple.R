@@ -1,6 +1,8 @@
 #'
-#' Score plot and confidence ellipsoid according to the provided pca model. Includes the option
-#' of distinguishing beteween observations and a customized title.
+#' scoreplotsimple
+#' 
+#' Returns the score plot providing the scores matrix, \strong{T}. Observations can 
+#' be identified by the obstag input argument.
 #'
 #' @param Tscores Matrix with the scores to be displayed, with the information of each PC stored by columns.
 #' @param pcx Optional integer with the number of the PC in the horizontal axis. Set to \code{1} by default.

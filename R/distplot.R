@@ -1,8 +1,11 @@
 #'
-#' Returns the distance plot according to the input arguments. Coordinates are expressed
-#' in terms of the Hotelling's T^2 (x-axis) and the Squared Prediction Error (y-axis)
-#' obtained projecting X on the provided pca model. Observations can be identified by the obstag
-#' input argument.
+#' distplot
+#'
+#' Returns the distance plot providing a dataset and a pca model. 
+#' 
+#' Coordinates are expressed in terms of the Hotelling's T^2 (x-axis) and the Squared Prediction
+#' Error (y-axis) obtained projecting X on the provided pca model. 
+#' Observations can be identified by the obstag input argument.
 #'
 #' @param X data matrix with observations to be displayed in the distance plot.
 #' @param pcaref list with the information of the PCA model.

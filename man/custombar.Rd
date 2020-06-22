@@ -2,8 +2,7 @@
 % Please edit documentation in R/custombar.R
 \name{custombar}
 \alias{custombar}
-\title{Bar plot with with customized title and labels. Y-Axis limits are fixed
-according to the range of the values in X.}
+\title{custombar}
 \usage{
 custombar(
   X,
@@ -28,6 +27,6 @@ custombar(
 ggplot object with the values of a vector with a customized geom_col layer.
 }
 \description{
-Bar plot with with customized title and labels. Y-Axis limits are fixed
+Bar plot with customized title and labels. Y-Axis limits are fixed
 according to the range of the values in X.
 }

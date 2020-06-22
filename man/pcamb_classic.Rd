@@ -2,7 +2,7 @@
 % Please edit documentation in R/pcamb_classic.R
 \name{pcamb_classic}
 \alias{pcamb_classic}
-\title{PCA model fitting according to a matrix X using svd.}
+\title{pcamb_classic}
 \usage{
 pcamb_classic(X, ncomp, alpha, prepro)
 }

@@ -2,8 +2,7 @@
 % Please edit documentation in R/scoreplotsimple.R
 \name{scoreplotsimple}
 \alias{scoreplotsimple}
-\title{Score plot and confidence ellipsoid according to the provided pca model. Includes the option
-of distinguishing beteween observations and a customized title.}
+\title{scoreplotsimple}
 \usage{
 scoreplotsimple(
   Tscores,
@@ -36,6 +35,6 @@ set to \code{0.05} (5 \%) by default.}
 ggplot object with the generated score plot.
 }
 \description{
-Score plot and confidence ellipsoid according to the provided pca model. Includes the option
-of distinguishing beteween observations and a customized title.
+Returns the score plot providing the scores matrix, \strong{T}. Observations can
+be identified by the obstag input argument.
 }

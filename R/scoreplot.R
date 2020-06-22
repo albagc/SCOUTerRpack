@@ -1,6 +1,8 @@
 #'
-#' Score plot and confidence ellipsoid according to the provided pca model. Includes the option
-#' of distinguishing beteween observations and a customized title.
+#' scoreplot
+#'
+#' Returns the score plot providing a dataset and a pca model. Observations can 
+#' be identified by the obstag input argument.
 #'
 #' @param X Matrix with the data to be displayed.
 #' @param pcamodel List wiht the PCA model elements.

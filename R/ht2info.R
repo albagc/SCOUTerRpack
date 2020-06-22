@@ -1,4 +1,6 @@
 #'
+#' ht2info
+#'
 #' Returns information about T^2 statistic for an observation. Two subplots show the information of an observation regarding its
 #' T^2 statistic, i.e.: a bar plot indicating the value of the statistic for the observation, and a bar plot with the contribution
 #' that each component had for the T^2 value

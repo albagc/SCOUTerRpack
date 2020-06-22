@@ -2,7 +2,7 @@
 % Please edit documentation in R/scout.R
 \name{scout}
 \alias{scout}
-\title{Shift of an observation following a selected pattern.}
+\title{scout}
 \usage{
 scout(
   X,

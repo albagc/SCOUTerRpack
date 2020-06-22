@@ -2,7 +2,7 @@
 % Please edit documentation in R/scoutgrid.R
 \name{scoutgrid}
 \alias{scoutgrid}
-\title{Shift of an array following a grid pattern.}
+\title{scoutgrid}
 \usage{
 scoutgrid(
   X,

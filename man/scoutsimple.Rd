@@ -2,7 +2,7 @@
 % Please edit documentation in R/scoutsimple.R
 \name{scoutsimple}
 \alias{scoutsimple}
-\title{Shift of an array with a single step.}
+\title{scoutsimple}
 \usage{
 scoutsimple(X, pcaref, T2.target = NA, SPE.target = NA)
 }

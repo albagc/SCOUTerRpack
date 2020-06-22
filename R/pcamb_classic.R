@@ -1,4 +1,6 @@
 #'
+#' pcamb_classic
+#'
 #' PCA model fitting according to a matrix X using svd.
 #'
 #' @param X Matrix with observations that will used to fit the PCA model.

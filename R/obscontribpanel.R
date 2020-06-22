@@ -1,4 +1,6 @@
 #'
+#' obscontribpanel
+#'
 #' Information about T^2 and SPE statistics of an observation.
 #'
 #' @param pcax A list with the elements of the PCA model that will be displayed:

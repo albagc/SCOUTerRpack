@@ -1,4 +1,6 @@
 #'
+#' scoutgrid
+#'
 #' Shift of an array following a grid pattern.
 #'
 #' @param X Matrix with observations that will be shifted as rows.

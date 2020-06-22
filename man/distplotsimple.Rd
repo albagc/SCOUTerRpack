@@ -2,7 +2,7 @@
 % Please edit documentation in R/distplotsimple.R
 \name{distplotsimple}
 \alias{distplotsimple}
-\title{Distance plot}
+\title{displotsimple}
 \usage{
 distplotsimple(
   T2,
@@ -38,8 +38,10 @@ Upper Control Limits set to \code{0.05} (5 \%) by default.}
 distplotobj ggplot object with the generated distance plot.
 }
 \description{
-Returns the distance plot according to the input arguments. Coordinates are expressed
-in terms of the Hotelling's T^2 (x-axis) and the Squared Prediction Error (y-axis)
-obtained projecting X on the provided pca model. Observations can be identified by the obstag
-input argument.
+Returns the distance plot directly providing the coordiantes and Upper Control Limits.
+}
+\details{
+Coordinates are expressed in terms of the Hotelling's T^2 (x-axis) and the Squared Prediction
+Error (y-axis) obtained projecting X on the provided pca model.
+Observations can be identified by the obstag input argument.
 }

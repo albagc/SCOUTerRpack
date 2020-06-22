@@ -2,7 +2,7 @@
 % Please edit documentation in R/scoutsteps.R
 \name{scoutsteps}
 \alias{scoutsteps}
-\title{Shift of an array following a step-wise pattern.}
+\title{scoutsteps}
 \usage{
 scoutsteps(
   X,

@@ -1,4 +1,6 @@
 #'
+#' scoutsimple
+#'
 #' Shift of an array with a single step.
 #'
 #' @param X Matrix with observations that will be shifted as rows.

@@ -1,4 +1,6 @@
 #'
+#' scout
+#'
 #' Shift of an observation following a selected pattern.
 #'
 #' @param X Matrix with observations that will be shifted as rows.

@@ -1,10 +1,11 @@
 #'
-#' Distance plot
+#' displotsimple
 #'
-#' Returns the distance plot according to the input arguments. Coordinates are expressed
-#' in terms of the Hotelling's T^2 (x-axis) and the Squared Prediction Error (y-axis)
-#' obtained projecting X on the provided pca model. Observations can be identified by the obstag
-#' input argument.
+#' Returns the distance plot directly providing the coordiantes and Upper Control Limits. 
+#' 
+#' Coordinates are expressed in terms of the Hotelling's T^2 (x-axis) and the Squared Prediction
+#' Error (y-axis) obtained projecting X on the provided pca model. 
+#' Observations can be identified by the obstag input argument.
 #'
 #' @param T2 Vector with the Hotelling's T^2 values for each observation.
 #' @param SPE Vector with the SPE values for each observation.

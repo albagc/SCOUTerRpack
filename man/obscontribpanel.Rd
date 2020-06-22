@@ -2,7 +2,7 @@
 % Please edit documentation in R/obscontribpanel.R
 \name{obscontribpanel}
 \alias{obscontribpanel}
-\title{Information about T^2 and SPE statistics of an observation.}
+\title{obscontribpanel}
 \usage{
 obscontribpanel(pcax, pcaref, obsid = NA)
 }
