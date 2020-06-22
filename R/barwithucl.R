@@ -12,6 +12,7 @@
 #' @param xlabelname string with the y-axis label. Set to \code{"Obs. Index"} by default.
 #' @return ggplot object with the individual value of a variable as a geom_col
 #' with an horizontal line reference.
+#' @import ggplot2
 #' @export
 barwithucl <- function(x, iobs, ucl, plotname = "", ylabelname = "", xlabelname = "Obs. Index"){
   df.plot <- data.frame(value = x[iobs], ucl = ucl, obs = iobs)

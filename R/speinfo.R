@@ -11,6 +11,7 @@
 #' @param limspe Upper Control Limit for the SPE, at a certain confidence level (1-alpha)*100 %.
 #' @param iobs Integer with the index of the observation of interest. Default value set to \code{NA}.
 #' @return ggplot object with the generated bar plots.
+#' @import ggplot2
 #' @export
 speinfo <- function(SPE, E, limspe, iobs = NA){
   bar.spe <- barwithucl(SPE, ucl = limspe, iobs = iobs, ylabelname = "SPE") +

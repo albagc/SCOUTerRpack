@@ -14,6 +14,7 @@
 #' @param varT Optional parameter expressing the variance of each PC. Set to \code{var(Tscores)} by default.
 #' @param plottitle Optional string with the plot title. Set to \code{"Score plot"} by default.
 #' @return ggplot object with the generated score plot.
+#' @import ggplot2 stats
 #' @export
 scoreplotsimple <- function(Tscores, pcx = 1, pcy  = 2, obstag = matrix(0, nrow(Tscores), 1),
                             alpha = 0.05, varT = stats::var(Tscores), plottitle = "Score plot\n"){

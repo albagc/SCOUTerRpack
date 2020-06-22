@@ -8,6 +8,7 @@
 #' @param pcaref A list with the PCA model according to which the distance and contributions are expressed.
 #' @param obsid Integer with the index of the observation of interest. Default set to \code{NA}.
 #' @return ggplot object with the generated bar plots in a 1 x 4 subplots layout.
+#' @import ggpubr
 #' @export
 obscontribpanel <- function(pcax, pcaref, obsid = NA){
   HT2A.plots <- ht2info(pcax$T2, pcax$T2matrix, pcaref$limt2, iobs = obsid)

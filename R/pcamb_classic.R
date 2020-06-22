@@ -17,6 +17,7 @@
 #' scores with a confidence level (1-alpha)*100 %)), \code{prepro} (string indicating the type of preprocessing performed on X),
 #' \code{ncomp} (number of PCs of the PCA model, A), \code{alpha} (value of the type I risk assumed to calculate the Upper Control
 #' Limits of the SPE, T^2_A and scores), \code{n} (dimension of the number of rows in X), \code{S} (covariance matrix of X).
+#' @import stats
 #' @export
 pcamb_classic <- function(X, ncomp, alpha, prepro) {
   m <- colMeans(X)

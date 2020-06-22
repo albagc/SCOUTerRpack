@@ -11,6 +11,7 @@
 #' level (1-alpha)*100 %.
 #' @param iobs Integer with the index of the observation of interest. Default value set to \code{NA}.
 #' @return ggplot object with the generated bar plots.
+#' @import ggplot2 ggpubr
 #' @export
 ht2info <- function(HT2, T2matrix, limht2, iobs = NA){
   bar.ht2 <- barwithucl(HT2, ucl = limht2, iobs = iobs)  +
