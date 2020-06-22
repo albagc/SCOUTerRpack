@@ -1,4 +1,6 @@
 #'
+#' barwithucl
+#' 
 #' Single bar plot with Upper Control Limis. Customized title and labels.
 #' Y-Axis limits are fixed according to the range of the values in x.
 #'
