@@ -12,11 +12,9 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
-Imports:
-    readxl,
+Depends:
     ggplot2,
     ggpubr,
-    xlsx,
     stats
 Depends: 
     R (>= 2.10)
