@@ -1,19 +1,14 @@
 #'
-#' Shift of an observation.
+#' Shift of an observation. The performed operation results as a combination of two main directions: the direction of
+#' maximum gradient for the SPE (weighted by the parameter b) and the direction of the projection of the observation
+#' on the model (weighted by the parameter a).
 #'
-#' \code{xshift} returns a new array, shifted accordingly to the factors a and b which determine the direction of the shift. The performed
-#' operation results as a combination of two main directions: the direction of maximum gradient for the SPE (weighted by the parameter b) and
-#' the direction of the projection of the observation on the model (weighted by the parameter a).
-#'
-#' @param X Vector or matrix with observations that will be shifted
+#' @param X Matrix with observations that will be shifted
 #' @param P Loading matrix of the PCA model according to which the shfit will be performed.
-#' @param a A number or vector tuning the amount of the shift for each observation from X in the direction of the x's projection.
-#' @param b A number tuning the amount of the shift for each observation from X in the direction of the x's residual.
-#'
-#' @return Xout matrix with shifted observation as rows in the same order as in the input matrix (X).
-#'
+#' @param a A number or vector tuning the shift in the direction of its projection.
+#' @param b A number or vector tuning the shift in the direction of its residual.
+#' @return Matrix with shifted observation as rows, keeping the order of the input matrix \code{X}.
 #' @export
-
 xshift <- function(X, P, a, b){
   if (is.null(dim(X)) == TRUE){
     X <- t(as.matrix(X))

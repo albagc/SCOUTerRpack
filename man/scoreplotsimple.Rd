@@ -2,7 +2,8 @@
 % Please edit documentation in R/scoreplotsimple.R
 \name{scoreplotsimple}
 \alias{scoreplotsimple}
-\title{Score plot}
+\title{Score plot and confidence ellipsoid according to the provided pca model. Includes the option
+of distinguishing beteween observations and a customized title.}
 \usage{
 scoreplotsimple(
   Tscores,
@@ -10,33 +11,31 @@ scoreplotsimple(
   pcy = 2,
   obstag = matrix(0, nrow(Tscores), 1),
   alpha = 0.05,
-  varT = var(Tscores),
+  varT = stats::var(Tscores),
   plottitle = "Score plot\\n"
 )
 }
 \arguments{
-\item{Tscores}{A matrix with the scores to be displayed, with the information of each PC stored by columns.}
+\item{Tscores}{Matrix with the scores to be displayed, with the information of each PC stored by columns.}
 
-\item{pcx}{Optional integer with the number of the PC in the horizontal axis, set to 1 by default.}
+\item{pcx}{Optional integer with the number of the PC in the horizontal axis. Set to \code{1} by default.}
 
-\item{pcy}{Optional integer with the number of the PC in the vertical axis, set to 2 by default.}
+\item{pcy}{Optional integer with the number of the PC in the vertical axis. Set to \code{2} by default.}
 
-\item{obstag}{Optional array with an integer for each observation used as a group tag. Set to \code{matrix(0, nrow(Tscores), 1)}
-by default.}
+\item{obstag}{Optional column vector of integers indicating the group of each
+observation (\code{0} or \code{1}). Default value set to \code{matrix(0, nrow(X), 1)}.}
 
 \item{alpha}{Optional number between 0 and 1 expressing the type I risk assumed in the compuatation of the confidence ellipse,
-set to 0.05 (5 \%) by default.}
+set to \code{0.05} (5 \%) by default.}
 
-\item{varT}{Optional parameter expressing the variance of each PC, set to \code{var(Tscores)} by default.}
+\item{varT}{Optional parameter expressing the variance of each PC. Set to \code{var(Tscores)} by default.}
 
-\item{plottitle}{Optional string with the plot title, \code{"Score plot"} by default.}
+\item{plottitle}{Optional string with the plot title. Set to \code{"Score plot"} by default.}
 }
 \value{
-scplotobj ggplot object with the generated score plot.
+ggplot object with the generated score plot.
 }
 \description{
-\code{scoreplotsimple} returns a ggplot object with the score plot for the observations of a matrix, expressing their coordinates
-in terms of the Principal Components obtained according to the provided pca model. It also includes the option
-of distinguishing beteween observations and a customized title and also displays the confidence ellipsoid for the scores for
-a confidence level of (1-alpha)*100 \%
+Score plot and confidence ellipsoid according to the provided pca model. Includes the option
+of distinguishing beteween observations and a customized title.
 }

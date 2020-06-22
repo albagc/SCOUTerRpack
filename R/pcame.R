@@ -4,49 +4,42 @@
 #' \code{pcame} performs the projection of the data in X onto the PCA model stored as a list of parameters. It returns the projection
 #' of the observations in X, along with the SPE, Hotelling's T^2_A, contribution elements and the reconstruction of X obtained by the
 #' PCA model.
-#'
-#' @param X A vector or matrix with observations that will be projected onto the PCA model.
-#' @param pcamodel A list with the elemements of a PCA model: m (mean), s (standard deviation), prepro (preprocessing),
-#' P (loading matrix), lambda (vector with variances of each PC). The preprocessing element is a character with possible values "none",
-#' if any preprocessing should be performed on X, "cent", if a mean-centering should be performed on X, or "autosc", it a mean-centering
-#' and unitary variance scaling (autoscaling) should be performed on X.
-#'
-#' @return pcaout list with fields containing information about X in the PCA model: Xpreprocessed (matrix X preprocessed),
-#' Tscores (score matrix with the projection of X on each one of the A PCs), E (error matrix with the par of X not explained by the PCA model),
-#' SPE (vector with the SPE for each observation of X), T2 (vector with the T^_A for each observation of X), T2matrix (matrix with the contributions of each PC
-#' to the T^2_A for each observation of X) and Xrec (matrix with the reconstructed part of X, i.e. the part of X explained by the PCA model).
-#'
+#' @param X Matrix with observations that will be projected onto the PCA model.
+#' @param pcaref A list with the elemements of a PCA model: \code{m} (mean), \code{s} (standard deviation), \code{prepro} (preprocessing:
+#' \code{"none"}, \code{"cent"} or \code{"autosc"}), \code{P} (loading matrix), \code{lambda} (vector with variances of each PC).
+#' @return list with elements containing information about X in the PCA model: \code{Xpreprocessed} (matrix \code{X} preprocessed),
+#' \code{Tscores} (score matrix with the projection of \code{X} on each one of the A PCs), \code{E} (error matrix with the par of \code{X}
+#' not explained by the PCA model), \code{SPE} (vector with the SPE for each observation of \code{X}), \code{T2} (vector with the T^_A for
+#' each observation of \code{X}), \code{T2matrix} (matrix with the contributions of each PC to the T^2_A for each observation of \code{X})
+#' and \code{Xrec} (matrix with the reconstructed part of \code{X}, i.e. the part of \code{X} explained by the PCA model).
 #' @export
-
-pcame <- function(X, pcamodel){
+pcame <- function(X, pcaref){
   if (is.null(dim(X)) == TRUE){
     X <- t(as.matrix(X))
   }
   n <- nrow(X)
-  if (pcamodel$prepro == 'cent'){
-    Xaux <- X - pcamodel$m
-  } else if (pcamodel$prepro == 'autosc') {
-    Xaux <- (X - pcamodel$m) / kronecker(matrix(1, n, 1), t(pcamodel$s))
-  } else if (pcamodel$prepro == 'none') {
+  if (pcaref$prepro == 'cent'){
+    Xaux <- X - pcaref$m
+  } else if (pcaref$prepro == 'autosc') {
+    Xaux <- (X - pcaref$m) / kronecker(matrix(1, n, 1), t(pcaref$s))
+  } else if (pcaref$prepro == 'none') {
     Xaux <- X
   }
   p <- ncol(Xaux)
-  P <- pcamodel$P
+  P <- pcaref$P
   I <- diag(p)
   Tscores <- Xaux %*% P
   E <- Xaux - Tscores %*% t(P)
   SPE <- rowSums(E ^ 2)
-  T2 <- rowSums(Tscores ^ 2 / kronecker(matrix(1, n, 1), pcamodel$lambda))
-  T2matrix <- Tscores ^ 2 / kronecker(matrix(1, n, 1), pcamodel$lambda)
-
-  if (pcamodel$prepro == 'cent'){
-    Xrec <- Tscores %*% t(P) + pcamodel$m
-  } else if (pcamodel$prepro == 'autosc') {
-    Xrec <- Tscores %*% t(P) * kronecker(matrix(1, n, 1), t(pcamodel$s)) + pcamodel$m
-  } else if (pcamodel$prepro == 'none') {
+  T2 <- rowSums(Tscores ^ 2 / kronecker(matrix(1, n, 1), pcaref$lambda))
+  T2matrix <- Tscores ^ 2 / kronecker(matrix(1, n, 1), pcaref$lambda)
+  if (pcaref$prepro == 'cent'){
+    Xrec <- Tscores %*% t(P) + pcaref$m
+  } else if (pcaref$prepro == 'autosc') {
+    Xrec <- Tscores %*% t(P) * kronecker(matrix(1, n, 1), t(pcaref$s)) + pcaref$m
+  } else if (pcaref$prepro == 'none') {
     Xrec <- Tscores %*% t(P)
   }
-
   pcaout <- list()
   pcaout$Xpreprocessed <- Xaux
   pcaout$Tscores <- Tscores

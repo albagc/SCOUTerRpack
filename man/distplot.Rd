@@ -2,29 +2,34 @@
 % Please edit documentation in R/distplot.R
 \name{distplot}
 \alias{distplot}
-\title{Distance plot}
+\title{Returns the distance plot according to the input arguments. Coordinates are expressed
+in terms of the Hotelling's T^2 (x-axis) and the Squared Prediction Error (y-axis)
+obtained projecting X on the provided pca model. Observations can be identified by the obstag
+input argument.}
 \usage{
 distplot(
   X,
-  pcamodel,
+  pcaref,
   obstag = matrix(0, nrow(X), 1),
   plottitle = "Distance plot\\n"
 )
 }
 \arguments{
-\item{X}{A matrix with the data to be displayed.}
+\item{X}{data matrix with observations to be displayed in the distance plot.}
 
-\item{pcamodel}{A list wiht the PCA model elements.}
+\item{pcaref}{list with the information of the PCA model.}
 
-\item{obstag}{Optional array with an integer for each observation used as a group tag.}
+\item{obstag}{Optional column vector of integers indicating the group of each
+observation (\code{0} or \code{1}). Default value set to \code{matrix(0, nrow(X), 1)}.}
 
 \item{plottitle}{Optional string with the plot title. Set to \code{"Distance plot"} by default.}
 }
 \value{
-distplotobj ggplot object with the generated distance plot.
+ggplot object with the distance plot.
 }
 \description{
-\code{distplot} returns a ggplot object with the distance plot for the observations of a matrix, expressing their coordinates
-in terms of the Squared Prediction Error and the Hotelling's T^2 according to the provided pca model. It also includes the option
-of distinguishing beteween observations and a customized title.
+Returns the distance plot according to the input arguments. Coordinates are expressed
+in terms of the Hotelling's T^2 (x-axis) and the Squared Prediction Error (y-axis)
+obtained projecting X on the provided pca model. Observations can be identified by the obstag
+input argument.
 }

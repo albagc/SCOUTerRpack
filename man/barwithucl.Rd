@@ -2,29 +2,36 @@
 % Please edit documentation in R/barwithucl.R
 \name{barwithucl}
 \alias{barwithucl}
-\title{Display individual value with reference value of a variable.}
+\title{Single bar plot with Upper Control Limis. Customized title and labels.
+Y-Axis limits are fixed according to the range of the values in x.}
 \usage{
-barwithucl(x, iobs, ucl, plotname = "", ylabelname = "")
+barwithucl(
+  x,
+  iobs,
+  ucl,
+  plotname = "",
+  ylabelname = "",
+  xlabelname = "Obs. Index"
+)
 }
 \arguments{
-\item{x}{A vector witht the variable of interest.}
+\item{x}{vector with the values of the statistic.}
 
-\item{iobs}{An integer with the observation index.}
+\item{iobs}{index of the observations whose value will be displayed.}
 
-\item{ucl}{A number with the horizontal reference value.}
+\item{ucl}{Upper Control Limit of the statistic.}
 
-\item{plotname}{Optional string with the plot title. Set to "" by default.}
+\item{plotname}{string with the title of the plot. Set to \code{""} by default.}
 
-\item{ylabelname}{Optional string with the y-axis label. Set to "" by default.}
+\item{ylabelname}{string with the y-axis label. Set to \code{""} by default.}
+
+\item{xlabelname}{string with the y-axis label. Set to \code{"Obs. Index"} by default.}
 }
 \value{
-Ggplot object with geom_col and geom_hline layers
-}
-\description{
-Returns a ggplot object with the individual value of a variable as a geom_col
+ggplot object with the individual value of a variable as a geom_col
 with an horizontal line reference.
 }
-\examples{
-barwithucl(c(1:40), 20, max(c(1:40)))
-barwithucl(c(1:40), 20, max(c(1:40)), plotname = "Example", ylabel = "x value")
+\description{
+Single bar plot with Upper Control Limis. Customized title and labels.
+Y-Axis limits are fixed according to the range of the values in x.
 }

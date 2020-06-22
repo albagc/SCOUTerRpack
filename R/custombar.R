@@ -1,30 +1,26 @@
 #'
-#' Customized bar plot
+#'Bar plot with with customized title and labels. Y-Axis limits are fixed
+#'according to the range of the values in X.
 #'
-#' \code{custombar} returns a ggplot object with the values of a vector with a customized geom_col layer.
-#' The y-axis scale is built accounting the maximum absolute value in X. Therefore, the size of the columns is also
-#' relative to the magnitude of the extreme values in X.
-#'
-#' @param X A matrix with the vector representing each observation stored in rows.
-#' @param iobs An integer with the observation index.
-#' @param plotname Optional string with the plot title. Set to  "" by default.
-#' @param xlabelname Optional string with the x-axis label. Set to "Variables" by default.
-#'
-#' @return custbarob ggplot object with the geom_col layer and other customization layers.
-#'
-#' @examples
-#'
+#' @param X matrix with observations as row vectors.
+#' @param iobs index of the observations whose value will be displayed.
+#' @param plotname string with the title of the plot. Set to "" by default.
+#' @param ylabelname string with the y-axis label. Set to "Contribution" by default.
+#' @param xlabelname string with the y-axis label. Set to "Variables" by default.
+#' @return ggplot object with the values of a vector with a customized geom_col layer.
 #' @export
-
-custombar <- function(X, iobs, plotname = "", xlabelname = "Variables"){
+custombar <- function(X, iobs, plotname = "", ylabelname = "Contribution", xlabelname = "ggplot2::"){
   df.plot <- data.frame(contribution = X[iobs,], element = seq(1,length(X[iobs,]), by = 1))
   ymax <- max(abs(X))
-  ggplot(df.plot) + geom_col(aes(x = element, y = contribution, alpha = 0.6),
-                             width = 0.75, fill = "blue", show.legend = FALSE) +
-    geom_hline(yintercept = 0, colour = "black") + theme_bw() + coord_cartesian(ylim = c(-ymax, ymax)*1.1) +
-    scale_x_continuous(breaks = seq(1, ncol(X), by = 1)) +
-    labs(x = xlabelname, y = "contribution", title = paste0(plotname,"\n")) +
-    theme(plot.title = element_text(hjust = 0.5, size = 20), legend.position = "none",
-          axis.title.x = element_text(size = 18), axis.title.y = element_text(size = 16))
+  barobj <- ggplot2::ggplot(df.plot) +
+    ggplot2::geom_col(ggplot2::aes(x = seq(1,length(X[iobs,]), by = 1), y = X[iobs,], alpha = 0.6),
+                                                         width = 0.75, fill = "blue", show.legend = FALSE) +
+    ggplot2::geom_hline(yintercept = 0, colour = "black") +
+    ggplot2::scale_x_continuous(breaks = seq(1, ncol(X), by = 1)) +
+    ggplot2::coord_cartesian(ylim = c(-ymax, ymax)*1.1) +
+    ggplot2::labs(x = xlabelname, y = ylabelname, title = paste0(plotname,"\n")) +
+    ggplot2::theme_bw() +
+    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, size = 20), legend.position = "none",
+          axis.title.x = ggplot2::element_text(size = 18), axis.title.y = ggplot2::element_text(size = 16))
+  return(barobj)
 }
-

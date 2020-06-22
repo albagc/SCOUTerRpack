@@ -24,11 +24,13 @@ distplotsimple(
 
 \item{lim.spe}{Value of the Upper Control Limit for the SPE.}
 
-\item{obstag}{Optional array with an integer for each observation used as a group tag. Set to \code{matrix(0, length(T2), 1)}
-by default.}
+\item{ncomp}{An integer indicating the number of PCs.}
 
-\item{alpha}{Optional number between 0 and 1 expressing the type I risk assumed in the compuatation of the confidence ellipse,
-set to 0.05 (5 \%) by default.}
+\item{obstag}{Optional column vector of integers indicating the group of each
+observation (\code{0} or \code{1}). Default value set to \code{matrix(0, nrow(X), 1)}.}
+
+\item{alpha}{Optional number between 0 and 1 expressing the type I risk assumed in the compuatation of the
+Upper Control Limits set to \code{0.05} (5 \%) by default.}
 
 \item{plottitle}{Optional string with the plot title, \code{"Distance plot"} by default.}
 }
@@ -36,7 +38,8 @@ set to 0.05 (5 \%) by default.}
 distplotobj ggplot object with the generated distance plot.
 }
 \description{
-Returns a ggplot object expressing the observations according to their Hotelling's T^2 (T^2) and
-Squared Prediction Error (SPE) coordinates. It also includes the Upper Control Limit references of each statistic, along with
-the option of distinguishing beteween observations and a customized title.
+Returns the distance plot according to the input arguments. Coordinates are expressed
+in terms of the Hotelling's T^2 (x-axis) and the Squared Prediction Error (y-axis)
+obtained projecting X on the provided pca model. Observations can be identified by the obstag
+input argument.
 }

@@ -2,26 +2,27 @@
 % Please edit documentation in R/ht2info.R
 \name{ht2info}
 \alias{ht2info}
-\title{Information about T^2 statistic for an observation.}
+\title{Returns information about T^2 statistic for an observation. Two subplots show the information of an observation regarding its
+T^2 statistic, i.e.: a bar plot indicating the value of the statistic for the observation, and a bar plot with the contribution
+that each component had for the T^2 value}
 \usage{
-ht2info(HT2, T2matrix, limht2, iobs = iobs)
+ht2info(HT2, T2matrix, limht2, iobs = NA)
 }
 \arguments{
 \item{HT2}{A vector with values of the Hotelling's T^2_A statistic.}
 
 \item{T2matrix}{A matrix with the contributions of each PC (A columns) for each observation (rows) to the Hotelling's T^2_A statistic.}
 
-\item{limht2}{A number with the value of the Upper Control Limit for the Hotelling's T^2_A statistic (at a certain confidence
-level (1-alpha)*100 \%).}
+\item{limht2}{Upper Control Limit for the Hotelling's T^2_A statistic, at a certain confidence
+level (1-alpha)*100 \%.}
 
-\item{iobs}{Integer with the index of the observation of interest.}
+\item{iobs}{Integer with the index of the observation of interest. Default value set to \code{NA}.}
 }
 \value{
-ht2plots ggplot object with the generated bar plots.
+ggplot object with the generated bar plots.
 }
 \description{
-\code{ht2info} returns a ggplot object with two subplots showing the information of an observation regarding its T^2 statistic, i.e.:
-information about the distance of the observation in the latent space. On one hand, it presents a bar plot indicating
-the value of the statistic for the observation, referenced by the Upper Control Limit. On the other hand, it also presents
-the contribution that each component had for the T^2 value of the selected observation.
+Returns information about T^2 statistic for an observation. Two subplots show the information of an observation regarding its
+T^2 statistic, i.e.: a bar plot indicating the value of the statistic for the observation, and a bar plot with the contribution
+that each component had for the T^2 value
 }

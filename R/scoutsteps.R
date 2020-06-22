@@ -1,27 +1,20 @@
 #'
 #' Shift of an array following a step-wise pattern.
 #'
-#' \code{scoutsteps} returns a new list with the information about the shifts performed to the observations in X.
-#'
-#' @param X A vector or matrix with observations that will be shifted as rows.
-#' @param pcaref A list with the elemements of a PCA model: m (mean), s (standard deviation), prepro (preprocessing),
-#' P (loading matrix), lambda (vector with variances of each PC). The preprocessing element is a character with possible values "none",
-#' if any preprocessing should be performed on X, "cent", if a mean-centering should be performed on X, or "autosc", it a mean-centering
-#' and unitary variance scaling (autoscaling) should be performed on X.
-#' @param T2.y A number indicating the target value for the T^2_A after the shift. Set to NA by default.
-#' @param SPE.y A number indicating the target value for the SPE after the shift. Set to NA by default.
-#' @param nsteps An integer indicating the number of steps in which the shift from the reference to the target values of the SPE and the T^2_A
-#' will be performed.
-#' @param gspe A mumber indicating the term that will tune the spacing between steps for the SPE. Set to 1 by default (linear spacing).
-#' @param st2 A mumber indicating the term that will tune the spacing between steps for the SPE. Set to 1 by default (linear spacing).
-#' @param tag.mode A character with value "series" if the tag output vector should discriminate between steps or not. Set to "" by default.
-#'
-#' @return scoutsteps list with elements with information about the shifted data. The matrix X, contains the new data, the SPE and T2 contain
-#' the statistic values of each one of the new generated outliers or observations. The elements step.spe and step.t2 make reference to the step
-#' at which each observation of the shifted dada is located. Finally, the element tag, has different values for each observation in X according
-#' to each step (if tag.mode == "series"), otherwise is a vector of ones with as many elements as rows in X.
-
-scoutsteps <- function(X, pcaref, T2.M = NA, SPE.M = NA, nsteps = 1, gspe = 1, gt2 = 1, tag.mode = "") {
+#' @param X Matrix with observations that will be shifted as rows.
+#' @param pcaref List with the elemements of a PCA model: \code{m} (mean), \code{s} (standard deviation), \code{prepro} (preprocessing:
+#' \code{"none"}, \code{"cent"} or \code{"autosc"}), \code{P} (loading matrix), \code{lambda} (vector with variances of each PC).
+#' @param T2.target A number indicating the target value for the T^2_A after the shift. Set to \code{NA} by default.
+#' @param SPE.target A number indicating the target value for the SPE after the shift. Set to \code{NA} by default.
+#' @param nsteps An integer indicating the number of steps in which the shift from the reference to the target
+#' values of the SPE and the T^2_A will be performed. Set to \code{1} by default.
+#' @param gspe A mumber indicating the term that will tune the spacing between steps for the SPE. Set to \code{1} by default (linear spacing).
+#' @param gt2 A mumber indicating the term that will tune the spacing between steps for the SPE. Set to \code{1} by default (linear spacing).
+#' @return list with elements: \code{X}, matrix with the new and shifted data, \code{SPE} and \code{T2} vectors with the statistic values
+#' of each one of the new generated outliers or observations, elements \code{step.spe} and \code{step.t2} make reference to the step
+#' of each observation. Finally, the element \code{tag}, is a vector of ones as long as the number of generated observations.
+#' @export
+scoutsteps <- function(X, pcaref, T2.target = NA, SPE.target = NA, nsteps = 1, gspe = 1, gt2 = 1) {
   # Calculate initial values for SPE and T^2 of observations in X.
   if (is.null(dim(X)) == TRUE){
     X <- t(as.matrix(X))
@@ -33,15 +26,15 @@ scoutsteps <- function(X, pcaref, T2.M = NA, SPE.M = NA, nsteps = 1, gspe = 1, g
   SPE.0 <- pcaout$SPE
   # When the target value is not specified, the target value will be the initial value of the
   # statistic (there will not be any shift).
-  if (is.na(T2.M[1]) == TRUE){
-    T2.M = T2.0}
-  if (is.na(SPE.M[1]) == TRUE){
-    SPE.M = SPE.0}
+  if (is.na(T2.target[1]) == TRUE){
+    T2.target = T2.0}
+  if (is.na(SPE.target[1]) == TRUE){
+    SPE.target = SPE.0}
 
   factor.spe <- diag(((1:nsteps) / nsteps) ^ gspe)
   factor.t2 <- diag(((1:nsteps) / nsteps) ^ gt2)
-  steps.spe <- SPE.0 + kronecker(matrix(1, 1, nsteps), SPE.M - SPE.0) %*% factor.spe
-  steps.t2 <- T2.0 + kronecker(matrix(1, 1, nsteps), T2.M - T2.0) %*% factor.t2
+  steps.spe <- SPE.0 + kronecker(matrix(1, 1, nsteps), SPE.target - SPE.0) %*% factor.spe
+  steps.t2 <- T2.0 + kronecker(matrix(1, 1, nsteps), T2.target - T2.0) %*% factor.t2
 
   spe.targets <- as.vector(steps.spe)
   t2.targets <- as.vector(steps.t2)
@@ -66,11 +59,6 @@ scoutsteps <- function(X, pcaref, T2.M = NA, SPE.M = NA, nsteps = 1, gspe = 1, g
   outscout$T2 <- t2.targets
   outscout$step.spe <- as.vector(kronecker(matrix(1, n, 1), t(1:nsteps)))
   outscout$step.t2 <- as.vector(kronecker(matrix(1, n, 1), t(1:nsteps)))
-  if (tag.mode == "series"){
-    outscout$tag <- as.vector(kronecker(matrix(1, n, 1), t(1:nsteps)))
-  } else {
-    outscout$tag <- as.vector(matrix(1, nrow(Xout), 1))
-  }
-
+  outscout$tag <- as.vector(matrix(1, nrow(Xout), 1))
   return(outscout)
 }

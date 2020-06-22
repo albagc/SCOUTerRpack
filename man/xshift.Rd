@@ -2,24 +2,26 @@
 % Please edit documentation in R/xshift.R
 \name{xshift}
 \alias{xshift}
-\title{Shift of an observation.}
+\title{Shift of an observation. The performed operation results as a combination of two main directions: the direction of
+maximum gradient for the SPE (weighted by the parameter b) and the direction of the projection of the observation
+on the model (weighted by the parameter a).}
 \usage{
 xshift(X, P, a, b)
 }
 \arguments{
-\item{X}{Vector or matrix with observations that will be shifted}
+\item{X}{Matrix with observations that will be shifted}
 
 \item{P}{Loading matrix of the PCA model according to which the shfit will be performed.}
 
-\item{a}{A number or vector tuning the amount of the shift for each observation from X in the direction of the x's projection.}
+\item{a}{A number or vector tuning the shift in the direction of its projection.}
 
-\item{b}{A number tuning the amount of the shift for each observation from X in the direction of the x's residual.}
+\item{b}{A number or vector tuning the shift in the direction of its residual.}
 }
 \value{
-Xout matrix with shifted observation as rows in the same order as in the input matrix (X).
+Matrix with shifted observation as rows, keeping the order of the input matrix \code{X}.
 }
 \description{
-\code{xshift} returns a new array, shifted accordingly to the factors a and b which determine the direction of the shift. The performed
-operation results as a combination of two main directions: the direction of maximum gradient for the SPE (weighted by the parameter b) and
-the direction of the projection of the observation on the model (weighted by the parameter a).
+Shift of an observation. The performed operation results as a combination of two main directions: the direction of
+maximum gradient for the SPE (weighted by the parameter b) and the direction of the projection of the observation
+on the model (weighted by the parameter a).
 }

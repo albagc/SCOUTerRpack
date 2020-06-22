@@ -7,26 +7,26 @@
 pcamb_classic(X, ncomp, alpha, prepro)
 }
 \arguments{
-\item{X}{A vector or matrix with observations that will used to fit the PCA model.}
+\item{X}{Matrix with observations that will used to fit the PCA model.}
 
 \item{ncomp}{An integer indicating the number of PCs that the model will have.}
 
 \item{alpha}{A number between 0 and 1 indicating the type I risk assumed to calculate the Upper Control Limits for the SPE, the T^2_A and
-the scores. The confidence level of these limits will be (1-alpha)*100.}
+the scores. The confidence level of these limits will be \code{(1-alpha)*100}.}
 
-\item{prepro}{A string indicating the preprocessing that should be performed on X. Its possible values are: "none", if any preprocessing
-should be performed on X, "cent", if a mean-centering should be performed on X, or "autosc", it a mean-centering and unitary variance
-scaling (autoscaling) should be performed on X.}
+\item{prepro}{A string indicating the preprocessing to be performed on X. Its possible values are: \code{"none"},
+for any preprocessing, \code{"cent"}, for a mean-centering, or \code{"autosc"}, for a mean-centering and unitary variance
+scaling (autoscaling).}
 }
 \value{
-pcamodel list with fields containing information about PCA model: m (mean vector), s (standard deviation vector),
-P (loading matrix with the loadings of each PC stored as columns), Pfull (full loading matrix obtained by the svd),
-lambda (vector with the variance of each PC), limspe (Upper Control Limit for the SPE with a confidence level (1-alpha)*100 \%),
-limt2 (Upper Control Limit for the T^2_A with a confidence level (1-alpha)*100 \%), limits_t (Upper control Limits for the scores with a
-confidence level (1-alpha)*100 \%)), prepro (character indicating the type of preprocessing performed on X),
-ncomp (number of PCs of the PCA model, A), alpha (value of the type I risk assumed to calculate the Upper Control Limits of the SPE,
-T^2_A and scores), n (dimension of the number of rows in X), S (covariance matrix of X).
+list with elements containing information about PCA model: \code{m} (mean vector), \code{s} (standard deviation vector),
+\code{P} (loading matrix with the loadings of each PC stored as columns), \code{Pfull} (full loading matrix obtained by the svd),
+\code{lambda} (vector with the variance of each PC), \code{limspe} (Upper Control Limit for the SPE with a confidence level (1-alpha)*100 \%),
+\code{limt2} (Upper Control Limit for the T^2_A with a confidence level (1-alpha)*100 \%), \code{limits_t} (Upper control Limits for the
+scores with a confidence level (1-alpha)*100 \%)), \code{prepro} (string indicating the type of preprocessing performed on X),
+\code{ncomp} (number of PCs of the PCA model, A), \code{alpha} (value of the type I risk assumed to calculate the Upper Control
+Limits of the SPE, T^2_A and scores), \code{n} (dimension of the number of rows in X), \code{S} (covariance matrix of X).
 }
 \description{
-\code{pcamb_classic} performs the PCA model building (PCA-MB) using the data in X and returning the different elements of the PCA model.
+PCA model fitting according to a matrix X using svd.
 }

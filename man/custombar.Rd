@@ -2,27 +2,32 @@
 % Please edit documentation in R/custombar.R
 \name{custombar}
 \alias{custombar}
-\title{Customized bar plot}
+\title{Bar plot with with customized title and labels. Y-Axis limits are fixed
+according to the range of the values in X.}
 \usage{
-custombar(X, iobs, plotname = "", xlabelname = "Variables")
+custombar(
+  X,
+  iobs,
+  plotname = "",
+  ylabelname = "Contribution",
+  xlabelname = "ggplot2::"
+)
 }
 \arguments{
-\item{X}{A matrix with the vector representing each observation stored in rows.}
+\item{X}{matrix with observations as row vectors.}
 
-\item{iobs}{An integer with the observation index.}
+\item{iobs}{index of the observations whose value will be displayed.}
 
-\item{plotname}{Optional string with the plot title. Set to  "" by default.}
+\item{plotname}{string with the title of the plot. Set to "" by default.}
 
-\item{xlabelname}{Optional string with the x-axis label. Set to "Variables" by default.}
+\item{ylabelname}{string with the y-axis label. Set to "Contribution" by default.}
+
+\item{xlabelname}{string with the y-axis label. Set to "Variables" by default.}
 }
 \value{
-custbarob ggplot object with the geom_col layer and other customization layers.
+ggplot object with the values of a vector with a customized geom_col layer.
 }
 \description{
-\code{custombar} returns a ggplot object with the values of a vector with a customized geom_col layer.
-The y-axis scale is built accounting the maximum absolute value in X. Therefore, the size of the columns is also
-relative to the magnitude of the extreme values in X.
-}
-\examples{
-
+Bar plot with with customized title and labels. Y-Axis limits are fixed
+according to the range of the values in X.
 }

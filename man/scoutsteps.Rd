@@ -7,41 +7,35 @@
 scoutsteps(
   X,
   pcaref,
-  T2.M = NA,
-  SPE.M = NA,
+  T2.target = NA,
+  SPE.target = NA,
   nsteps = 1,
   gspe = 1,
-  gt2 = 1,
-  tag.mode = ""
+  gt2 = 1
 )
 }
 \arguments{
-\item{X}{A vector or matrix with observations that will be shifted as rows.}
+\item{X}{Matrix with observations that will be shifted as rows.}
 
-\item{pcaref}{A list with the elemements of a PCA model: m (mean), s (standard deviation), prepro (preprocessing),
-P (loading matrix), lambda (vector with variances of each PC). The preprocessing element is a character with possible values "none",
-if any preprocessing should be performed on X, "cent", if a mean-centering should be performed on X, or "autosc", it a mean-centering
-and unitary variance scaling (autoscaling) should be performed on X.}
+\item{pcaref}{List with the elemements of a PCA model: \code{m} (mean), \code{s} (standard deviation), \code{prepro} (preprocessing:
+\code{"none"}, \code{"cent"} or \code{"autosc"}), \code{P} (loading matrix), \code{lambda} (vector with variances of each PC).}
 
-\item{nsteps}{An integer indicating the number of steps in which the shift from the reference to the target values of the SPE and the T^2_A
-will be performed.}
+\item{T2.target}{A number indicating the target value for the T^2_A after the shift. Set to \code{NA} by default.}
 
-\item{gspe}{A mumber indicating the term that will tune the spacing between steps for the SPE. Set to 1 by default (linear spacing).}
+\item{SPE.target}{A number indicating the target value for the SPE after the shift. Set to \code{NA} by default.}
 
-\item{tag.mode}{A character with value "series" if the tag output vector should discriminate between steps or not. Set to "" by default.}
+\item{nsteps}{An integer indicating the number of steps in which the shift from the reference to the target
+values of the SPE and the T^2_A will be performed. Set to \code{1} by default.}
 
-\item{T2.y}{A number indicating the target value for the T^2_A after the shift. Set to NA by default.}
+\item{gspe}{A mumber indicating the term that will tune the spacing between steps for the SPE. Set to \code{1} by default (linear spacing).}
 
-\item{SPE.y}{A number indicating the target value for the SPE after the shift. Set to NA by default.}
-
-\item{st2}{A mumber indicating the term that will tune the spacing between steps for the SPE. Set to 1 by default (linear spacing).}
+\item{gt2}{A mumber indicating the term that will tune the spacing between steps for the SPE. Set to \code{1} by default (linear spacing).}
 }
 \value{
-scoutsteps list with elements with information about the shifted data. The matrix X, contains the new data, the SPE and T2 contain
-the statistic values of each one of the new generated outliers or observations. The elements step.spe and step.t2 make reference to the step
-at which each observation of the shifted dada is located. Finally, the element tag, has different values for each observation in X according
-to each step (if tag.mode == "series"), otherwise is a vector of ones with as many elements as rows in X.
+list with elements: \code{X}, matrix with the new and shifted data, \code{SPE} and \code{T2} vectors with the statistic values
+of each one of the new generated outliers or observations, elements \code{step.spe} and \code{step.t2} make reference to the step
+of each observation. Finally, the element \code{tag}, is a vector of ones as long as the number of generated observations.
 }
 \description{
-\code{scoutsteps} returns a new list with the information about the shifts performed to the observations in X.
+Shift of an array following a step-wise pattern.
 }

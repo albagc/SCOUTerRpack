@@ -1,25 +1,21 @@
 #'
-#' Distance plot
+#' Returns the distance plot according to the input arguments. Coordinates are expressed
+#' in terms of the Hotelling's T^2 (x-axis) and the Squared Prediction Error (y-axis)
+#' obtained projecting X on the provided pca model. Observations can be identified by the obstag
+#' input argument.
 #'
-#' \code{distplot} returns a ggplot object with the distance plot for the observations of a matrix, expressing their coordinates
-#' in terms of the Squared Prediction Error and the Hotelling's T^2 according to the provided pca model. It also includes the option
-#' of distinguishing beteween observations and a customized title.
-#'
-#' @param X A matrix with the data to be displayed.
-#' @param pcamodel A list wiht the PCA model elements.
-#' @param obstag Optional array with an integer for each observation used as a group tag.
+#' @param X data matrix with observations to be displayed in the distance plot.
+#' @param pcaref list with the information of the PCA model.
+#' @param obstag Optional column vector of integers indicating the group of each
+#' observation (\code{0} or \code{1}). Default value set to \code{matrix(0, nrow(X), 1)}.
 #' @param plottitle Optional string with the plot title. Set to \code{"Distance plot"} by default.
-#'
-#' @return distplotobj ggplot object with the generated distance plot.
-#'
+#' @return ggplot object with the distance plot.
 #' @export
-
-
-distplot <- function(X, pcamodel, obstag = matrix(0, nrow(X), 1), plottitle =  "Distance plot\n") {
+distplot <- function(X, pcaref, obstag = matrix(0, nrow(X), 1), plottitle =  "Distance plot\n") {
   # Calcualte the scores according to the PCA model in pcamodel list
-  pcavalues <- pcame(X, pcamodel)
-  distplot <- distplotsimple(pcavalues$T2, pcavalues$SPE, pcamodel$limt2, pcamodel$limspe, pcamodel$ncomp,
-                             obstag = obstag, plottitle = plottitle, alpha = pcamodel$alpha)
+  pcavalues <- pcame(X, pcaref)
+  distplot <- distplotsimple(pcavalues$T2, pcavalues$SPE, pcaref$limt2, pcaref$limspe, pcaref$ncomp,
+                             obstag = obstag, plottitle = plottitle, alpha = pcaref$alpha)
   return(distplot)
 
 }

@@ -4,21 +4,19 @@
 \alias{obscontribpanel}
 \title{Information about T^2 and SPE statistics of an observation.}
 \usage{
-obscontribpanel(obsid, pcaref, pcax)
+obscontribpanel(pcax, pcaref, obsid = NA)
 }
 \arguments{
-\item{obsid}{Integer with the index of the observation of interest.}
+\item{pcax}{A list with the elements of the PCA model that will be displayed:
+SPE, T^2_A and their constributions (E and T2matrix).}
 
 \item{pcaref}{A list with the PCA model according to which the distance and contributions are expressed.}
 
-\item{pcax}{A list with the elements of the PCA model that will be displayed: SPE, T^2_A and their constributions (E and T2matrix)}
+\item{obsid}{Integer with the index of the observation of interest. Default set to \code{NA}.}
 }
 \value{
-contrplots ggplot object with the generated bar plots.
+ggplot object with the generated bar plots in a 1 x 4 subplots layout.
 }
 \description{
-\code{obscontribpanel} returns a ggplot object with four subplots showing the information of an observation regarding
-its T^2 and SPE statistics, i.e.: information about the distance of the observation in the latent space and its distance to the model
-hyperplane. On one hand, it presents a bar plot indicating the value of each statistic for the observation, referenced by their
-Upper Control Limita. On the other hand, it also presents the contributions of that observation both for the T^2 and the SPE.
+Information about T^2 and SPE statistics of an observation.
 }
