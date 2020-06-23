@@ -2,10 +2,22 @@ Package: SCOUTer
 Title: Simulate Controlled Outliers
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "Alba",
-           family = "Gonzalez",
+    c(person(given = "Alba",
+           family = "González Cebrián",
            role = c("aut", "cre"),
-           email = "algonceb@upv.es")
+           email = "algonceb@upv.es"),
+           person(given = "Abel",
+           family = "Folch-Fortuny",
+           role = "aut",
+           email = "Abel.Folch-Fortuny@dsm.com"),
+           person(given = "Francisco",
+           family = "Arteaga",
+           role = c("aut"),
+           email = "francisco.arteaga@ucv.es"),
+           person(given = "Alberto",
+           family = "Ferrer",
+           role = "aut",
+           email = "aferrer@eio.upv.es"))
 Description: SCOUTer offers a new way of simulating outliers. Using PCA as a base model, the user can generate new observations that differ not only how, but also as much as, he or she may consider. Just by introducing the target values of the Squared Prediction Error and the Hotelling T2 statistics, SCOUTer returns a new set of observations with the desired target properties. SCOUTer is the way of simulating outliers in a simple and precise way.
 License: file LICENSE
 Encoding: UTF-8
