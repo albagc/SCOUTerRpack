@@ -1,0 +1,137 @@
+---
+title: "demoscouter"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{demoscouter}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 7,
+  fig.height = 4,
+  fig.align = "center"
+)
+```
+
+```{r setup}
+library(SCOUTer)
+```
+# Exploring the reference dataset
+## Using PCA models
+The demo matrix X (already loaded with the package) will be used for all the examples. First we build the PCA model (PCA - Model Building, _PCA-MB_).
+
+```{r pcamb}
+X <- as.matrix.data.frame(X)
+pcamodel_ref <- pcamb_classic(X, 2, 0.05, "cent")
+```
+
+Once a PCA model is obtained, data sets can be projected onto it. This is the PCA - Model Exploitation ( _PCA-ME_ ) framework. The function pcame.R returns a list with the results of this projection. 
+
+```{r pcame}
+pcax <- pcame(X, pcamodel_ref)
+```
+
+## Distance plot and score plot
+
+Functions distplot.R and scoreplot.R are used to obtain the distance plot and the score plot respectively. However, dscplot.R can be used to obtain both as subplots of the same figure. 
+
+```{r dscplot_ref}
+dscplot(X, pcamodel_ref)
+```
+
+This is the default layout. If a vertical disposition is preferred, then:
+
+```{r dscplot_ref_vertical}
+dscplot(X, pcamodel_ref, nrow = 2, ncol = 1)
+```
+
+Alternatively, if, for instance, only the distance plot is required:
+
+```{r distplot_ref}
+distplot(X, pcamodel_ref)
+```
+
+Note that the dataset and the PCA model are used as inputs, instead of the projection results. This is because all these functions innerly perform the PCA-ME step.
+
+## Other plots
+The SCOUTer package includes other graphical functions. The function obscontribpanel.R, ensembles all of them in one figure. Given an observation of interest, it displays information about the _SPE_, the _T<sup>2</sup>_ and the contributions to them.
+
+In this example, the information about the observation with the maximal _SPE_ will be displayed.
+
+```{r obscontrib}
+obscontribpanel(pcax, pcamodel_ref, which.max(pcax$SPE))
+```
+
+This layout can be divided in two sections: information about the _SPE_ and information about the _T<sup>2</sup>_. These parts can be individually obtained as plots by functions speinfo.R and ht2info.R.
+
+Alternatively, another way of dividing the elemtns of the figure is the bar plot types. 
+
+On one hand, there are bar plots with the reference of the Upper Control Limit. These are obtained by the barwithucl.R function. On the other hand, contribution plots are obtained with the custombar.R function. Both have customizable label options.
+
+```{r barplots}
+# Display SPE of the first observation
+barwithucl(pcax$SPE, 1, pcamodel_ref$limspe)
+# Display contributions to the SPE of the same observation
+custombar(pcax$E, 1, plotname = "Contributions to SPE")
+```
+
+# Simulating outliers
+
+Simulation can be performed using the scout.R function. The following examples will illustrate the three main types of SCOUTer simulation modes: simple, steps and grid.
+
+## Simple mode.
+An observation is chosen randomly from *X* and the scout.R function is used in order to shift it obtaining a new observation with target values equal to 40 for both statistics. 
+
+```{r scout_x_simple}
+set.seed(1218) # ensure always the same result 
+indsel <- sample(1:nrow(X), 1)
+x <- t(as.matrix(X[indsel,]))
+x.out <- scout(x, pcamodel_ref, T2.y = 40, SPE.y = 40, mode = "simple")
+```
+
+In order to shift a set of observations, the target values must be vectors with the target value corresponding to each observation in the input data matrix.
+
+Now, all observations from *X* will be shifted, generating another data set with _T<sup>2</sup>_ = 40 for all observations.
+
+```{r scout_X_simple}
+n <- nrow(X)
+X.T2.40 <- scout(X, pcamodel_ref, T2.y = matrix(40, n, 1), mode = "simple")
+```
+
+In order to display both datasets together, the argument obstag in the dscplot.R function can be used. 
+
+```{r dcsplot_X_simple}
+X.all <- rbind(X, X.T2.40$X)
+tag.all <- dotag(X, X.T2.40$X)
+dscplot(X.all, pcamodel_ref, obstag = tag.all)
+```
+
+## Steps mode.
+In this case it is included an intermediate step between the initial values and the target ones, which is the incremental variation of the _SPE_ and the _T<sup>2</sup>_. There are two new parameters to set:
+
+* The number of steps to perform until reaching the target values for each statistic.
+
+* The spacing between steps (gamma), which tunes the linearity of the spacing. If any value is provided, a linear spacing (gt2 and gspe input arguments keep their default value) is performed.
+
+```{r scout_x_steps}
+x.out.steps <- scout(x, pcamodel_ref, T2.y = 40, SPE.y = 40, nsteps = 10, mode = "steps")
+x.all <- rbind(x, x.out.steps$X)
+tag.all <- dotag(x, x.out.steps$X)
+dscplot(x.all, pcamodel_ref, obstag = tag.all)
+```
+
+## Grid mode.
+Finally, in this case, instead of increasing in a step-wise joint manner both the _SPE_ and the _T<sup>2</sup>_, a grid of steps is created. This implies simulating all combinations of { _SPE_, _T<sup>2</sup>_ } along their steps. Thus, nsteps.spe x nsteps.t2 sets are created.
+
+In this last case, a grid with 3 steps for the _T<sup>2</sup>_ and 2 steps for the _SPE_ is simulated. Moreover, steps will be non-linearly spaced, by setting the input arguments gspe and gt2 to values different to 1. 
+
+```{r scout_x_grid}
+x.out.grid <- scout(x, pcamodel_ref, T2.y = 40, SPE.y = 40, nsteps.spe = 2, nsteps.t2 = 3, gspe = 3, gt2 =0.3, mode = "grid")
+x.all <- rbind(x, x.out.grid$X)
+tag.all <- dotag(x, x.out.grid$X)
+dscplot(x.all, pcamodel_ref, obstag = tag.all)
+```

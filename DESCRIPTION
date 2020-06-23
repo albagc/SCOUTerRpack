@@ -29,3 +29,7 @@ Depends:
     ggplot2,
     ggpubr,
     stats
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

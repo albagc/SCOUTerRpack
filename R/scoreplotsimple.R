@@ -32,11 +32,11 @@ scoreplotsimple <- function(Tscores, pcx = 1, pcy  = 2, obstag = matrix(0, nrow(
   y.ell <- limits.t2 * sin(t.ell)
   T.ellipse <- data.frame(x.ell, y.ell)
 
-  tmin1 <- min(rbind(t1, - x.ell)) * 1.1
-  tmax1 <- max(rbind(t1, x.ell)) * 1.1
+  tmin1 <- min(c(t1, - x.ell)) * 1.1
+  tmax1 <- max(c(t1, x.ell)) * 1.1
   tlim1 <- max(abs(cbind(tmin1, tmax1)))
-  tmin2 <- min(rbind(t2, - limits.t1)) * 1.1
-  tmax2 <- max(rbind(t2, - limits.t1)) * 1.1
+  tmin2 <- min(c(t2, - limits.t1)) * 1.1
+  tmax2 <- max(c(t2, - limits.t1)) * 1.1
   tlim2 <- max(abs(cbind(tmin2, tmax2)))
   tmaxall <- max(cbind(tlim1, tlim2))
   conflev <- (1 - alpha)*100
