@@ -70,9 +70,9 @@ scoreplotsimple <- function(Tscores, pcx = 1, pcy  = 2, obstag = matrix(0, nrow(
          subtitle = bquote(Conf.Ellipse[.(paste0((1-alpha)*100, "%"))])) +
     ggplot2::guides(colour = ggplot2::guide_legend("", override.aes = list(alpha = 1)),
                     shape = ggplot2::guide_legend("")) +
-    ggplot2::theme(legend.position = "bottom", plot.title = ggplot2::element_text(hjust = 0.5, size = 20),
-          axis.title.x = ggplot2::element_text(face = "italic", size = 18),
-          axis.title.y = ggplot2::element_text(face = "italic", size = 18),
-          legend.direction = "vertical", legend.text = ggplot2::element_text(size = 18))
+    ggplot2::theme(legend.position = "bottom", plot.title = ggplot2::element_text(hjust = 0.5, size = 14),
+          axis.title.x = ggplot2::element_text(face = "italic", size = 10),
+          axis.title.y = ggplot2::element_text(face = "italic", size = 10),
+          legend.direction = "vertical", legend.text = ggplot2::element_text(size = 12))
   return(scplot)
 }
