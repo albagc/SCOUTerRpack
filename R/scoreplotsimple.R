@@ -42,7 +42,8 @@ scoreplotsimple <- function(Tscores, pcx = 1, pcy  = 2, obstag = matrix(0, nrow(
   conflev <- (1 - alpha)*100
 
   # Score plot
-  df.plot <- as.data.frame(cbind(t1, t2, obstag, obstag > 0))
+  set <- obstag > 0
+  df.plot <- as.data.frame(cbind(t1, t2, obstag, set))
   colnames(df.plot) <- c("t1", "t2", "tag", "set")
   df.plot$tag <- as.factor(df.plot$tag)
   df.plot$set[df.plot$set == 0] <- "Obs.ref"
@@ -55,7 +56,7 @@ scoreplotsimple <- function(Tscores, pcx = 1, pcy  = 2, obstag = matrix(0, nrow(
               colour = "red", size = 0.75) +
     ggplot2::geom_vline(xintercept = 0) + ggplot2::geom_hline(yintercept = 0) +
     # Scores (points)
-    ggplot2::geom_point(data = df.plot, mapping = ggplot2::aes(x = t1, y = t2, colour = df.plot$set, shape = df.plot$set),
+    ggplot2::geom_point(data = df.plot, mapping = ggplot2::aes(x = t1, y = t2, colour = set, shape = set),
                size = 3, alpha = 0.5) +
     # Group series settings
     ggplot2::scale_colour_manual(name = "",

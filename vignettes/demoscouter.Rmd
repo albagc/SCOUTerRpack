@@ -83,7 +83,7 @@ custombar(pcax$E, 1, plotname = "Contributions to SPE")
 
 Simulation can be performed using the scout.R function. The following examples will illustrate the three main types of SCOUTer simulation modes: simple, steps and grid.
 
-## Simple mode.
+## Simple mode
 An observation is chosen randomly from *X* and the scout.R function is used in order to shift it obtaining a new observation with target values equal to 40 for both statistics. 
 
 ```{r scout_x_simple}
@@ -110,7 +110,7 @@ tag.all <- dotag(X, X.T2.40$X)
 dscplot(X.all, pcamodel_ref, obstag = tag.all)
 ```
 
-## Steps mode.
+## Steps mode
 In this case it is included an intermediate step between the initial values and the target ones, which is the incremental variation of the _SPE_ and the _T<sup>2</sup>_. There are two new parameters to set:
 
 * The number of steps to perform until reaching the target values for each statistic.
@@ -124,7 +124,7 @@ tag.all <- dotag(x, x.out.steps$X)
 dscplot(x.all, pcamodel_ref, obstag = tag.all)
 ```
 
-## Grid mode.
+## Grid mode
 Finally, in this case, instead of increasing in a step-wise joint manner both the _SPE_ and the _T<sup>2</sup>_, a grid of steps is created. This implies simulating all combinations of { _SPE_, _T<sup>2</sup>_ } along their steps. Thus, nsteps.spe x nsteps.t2 sets are created.
 
 In this last case, a grid with 3 steps for the _T<sup>2</sup>_ and 2 steps for the _SPE_ is simulated. Moreover, steps will be non-linearly spaced, by setting the input arguments gspe and gt2 to values different to 1. 

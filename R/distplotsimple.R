@@ -25,7 +25,8 @@ distplotsimple <- function(T2, SPE, lim.t2, lim.spe, ncomp, obstag = matrix(0, l
   b <- 1.1*max(c(SPE, lim.spe))
   conflev <- (1 - alpha)*100
   # Distance plot
-  df.plot <- as.data.frame(cbind(T2, SPE, obstag, obstag > 0))
+  set <- obstag > 0
+  df.plot <- as.data.frame(cbind(T2, SPE, obstag, set))
   colnames(df.plot) = c("T2", "SPE", "tag", "set")
   df.plot$tag <- as.factor(df.plot$tag)
   df.plot$set[df.plot$set == 0] <- "Obs.ref"
@@ -37,7 +38,7 @@ distplotsimple <- function(T2, SPE, lim.t2, lim.spe, ncomp, obstag = matrix(0, l
                show.legend = TRUE)+
     ggplot2::geom_hline(yintercept = lim.spe, colour = "red", linetype = "dashed", size = 0.75) +
     # Observations (points)
-    ggplot2::geom_point(data = df.plot, mapping = ggplot2::aes(x = T2, y = SPE, colour = df.plot$set, shape = df.plot$set),
+    ggplot2::geom_point(data = df.plot, mapping = ggplot2::aes(x = T2, y = SPE, colour = set, shape = set),
                size = 3, alpha = 0.5) +
     # Group series settings
     ggplot2::scale_colour_manual(name = "",
