@@ -1,8 +1,9 @@
 ---
-title: "demoscouter"
-output: rmarkdown::html_vignette
+title: "SCOUTer demo"
+# output: rmarkdown::html_vignette
+output: pdf_document
 vignette: >
-  %\VignetteIndexEntry{demoscouter}
+  %\VignetteIndexEntry{SCOUTer demo}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -39,19 +40,19 @@ pcax <- pcame(X, pcamodel_ref)
 
 Functions distplot.R and scoreplot.R are used to obtain the distance plot and the score plot respectively. However, dscplot.R can be used to obtain both as subplots of the same figure. 
 
-```{r dscplot_ref}
+```{r dscplot_ref, fig.cap="Distance plot (left) and score plot (right) of the reference data and PCA model.", fig.dim = c(6, 3)}
 dscplot(X, pcamodel_ref)
 ```
 
 This is the default layout. If a vertical disposition is preferred, then:
 
-```{r dscplot_ref_vertical}
+```{r dscplot_ref_vertical, fig.cap="Distance plot (left) and score plot (right) of the reference data and PCA model with vertical layout.", fig.dim = c(3, 5.5)}
 dscplot(X, pcamodel_ref, nrow = 2, ncol = 1)
 ```
 
 Alternatively, if, for instance, only the distance plot is required:
 
-```{r distplot_ref}
+```{r distplot_ref, fig.cap="Distance plot of the reference data and PCA model.", fig.dim = c(3, 3)}
 distplot(X, pcamodel_ref)
 ```
 
@@ -62,7 +63,7 @@ The SCOUTer package includes other graphical functions. The function obscontribp
 
 In this example, the information about the observation with the maximal _SPE_ will be displayed.
 
-```{r obscontrib}
+```{r obscontrib, fig.cap="Contribution panel for _SPE_ and _T<sup>2</sup>_ values.", fig.dim = c(10, 2), fig.fullwidth = TRUE}
 obscontribpanel(pcax, pcamodel_ref, which.max(pcax$SPE))
 ```
 
@@ -72,12 +73,15 @@ Alternatively, another way of dividing the elemtns of the figure is the bar plot
 
 On one hand, there are bar plots with the reference of the Upper Control Limit. These are obtained by the barwithucl.R function. On the other hand, contribution plots are obtained with the custombar.R function. Both have customizable label options.
 
-```{r barplots}
+```{r barplot1, fig.cap="Bar plot with the _SPE_ value of an observation (bar) and the UCL according to the PCA model (red line)", fig.dim = c(1, 3)}
 # Display SPE of the first observation
-barwithucl(pcax$SPE, 1, pcamodel_ref$limspe)
+barwithucl(pcax$SPE, 1, pcamodel_ref$limspe, plotname = "SPE")
+```
+```{r barplot2, fig.cap="Bar plot with the contributions of each variable (error vector, *e*) to the _SPE_ value", fig.dim = c(4, 3)}
 # Display contributions to the SPE of the same observation
 custombar(pcax$E, 1, plotname = "Contributions to SPE")
 ```
+
 
 # Simulating outliers
 
@@ -104,7 +108,7 @@ X.T2.40 <- scout(X, pcamodel_ref, T2.y = matrix(40, n, 1), mode = "simple")
 
 In order to display both datasets together, the argument obstag in the dscplot.R function can be used. 
 
-```{r dcsplot_X_simple}
+```{r dcsplot_X_simple, fig.cap="Distance plot (left) and score plot (right) of the data simulated with simple mode.", fig.dim = c(6, 4)}
 X.all <- rbind(X, X.T2.40$X)
 tag.all <- dotag(X, X.T2.40$X)
 dscplot(X.all, pcamodel_ref, obstag = tag.all)
@@ -117,7 +121,7 @@ In this case it is included an intermediate step between the initial values and 
 
 * The spacing between steps (gamma), which tunes the linearity of the spacing. If any value is provided, a linear spacing (gt2 and gspe input arguments keep their default value) is performed.
 
-```{r scout_x_steps}
+```{r scout_x_steps, fig.cap="Distance plot (left) and score plot (right) of the data simulated with steps mode.", fig.dim = c(6, 4)}
 x.out.steps <- scout(x, pcamodel_ref, T2.y = 40, SPE.y = 40, nsteps = 10, mode = "steps")
 x.all <- rbind(x, x.out.steps$X)
 tag.all <- dotag(x, x.out.steps$X)
@@ -129,7 +133,7 @@ Finally, in this case, instead of increasing in a step-wise joint manner both th
 
 In this last case, a grid with 3 steps for the _T<sup>2</sup>_ and 2 steps for the _SPE_ is simulated. Moreover, steps will be non-linearly spaced, by setting the input arguments gspe and gt2 to values different to 1. 
 
-```{r scout_x_grid}
+```{r scout_x_grid, fig.cap="Distance plot (left) and score plot (right) of the data simulated with grid mode.", fig.dim = c(6, 4)}
 x.out.grid <- scout(x, pcamodel_ref, T2.y = 40, SPE.y = 40, nsteps.spe = 2, nsteps.t2 = 3, gspe = 3, gt2 =0.3, mode = "grid")
 x.all <- rbind(x, x.out.grid$X)
 tag.all <- dotag(x, x.out.grid$X)
