@@ -23,9 +23,9 @@ custombar <- function(X, iobs, plotname = "", ylabelname = "Contribution", xlabe
     ggplot2::coord_cartesian(ylim = c(-ymax, ymax)*1.1) +
     ggplot2::labs(x = xlabelname, y = ylabelname, title = paste0(plotname,"\n")) +
     ggplot2::theme_bw() +
-    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, size = 14), 
+    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, size = 10), 
                    legend.position = "none",
-                   axis.title.x = ggplot2::element_text(size = 10), 
-                   axis.title.y = ggplot2::element_text(size = 10))
+                   axis.title.x = ggplot2::element_text(size = 8), 
+                   axis.title.y = ggplot2::element_text(size = 8))
   return(barobj)
 }
