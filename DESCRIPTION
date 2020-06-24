@@ -22,6 +22,7 @@ Description: SCOUTer offers a new way of simulating outliers. Using PCA as a bas
 License: file LICENSE
 Encoding: UTF-8
 LazyData: true
+Maintainer: Alba González Cebrián <algonceb@upv.es>
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 Depends: 
