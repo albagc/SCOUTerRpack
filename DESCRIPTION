@@ -1,6 +1,6 @@
 Package: SCOUTer
 Title: Simulate Controlled Outliers
-Version: 0.0.0.9000
+Version: 1.0.0
 Authors@R: 
     c(person(given = "Alba",
            family = "González Cebrián",
@@ -18,11 +18,12 @@ Authors@R:
            family = "Ferrer",
            role = "aut",
            email = "aferrer@eio.upv.es"))
-Description: SCOUTer offers a new way of simulating outliers. Using PCA as a base model, the user can generate new observations that differ not only how, but also as much as, he or she may consider. Just by introducing the target values of the Squared Prediction Error and the Hotelling T2 statistics, SCOUTer returns a new set of observations with the desired target properties. SCOUTer is the way of simulating outliers in a simple and precise way.
-License: file LICENSE
+Description: Using Principal Component Analysis as a base model, the user can generate new observations defining them through a pair of well-known statistics: the Squared Prediction Error and the Hotelling's T2 statistics. Just by introducing the target values of the SPE and T^2, SCOUTer returns a new set of observations with the desired target properties. SCOUTer offers a new approach to simulate outliers in a simple and precise way. 
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Maintainer: Alba González Cebrián <algonceb@upv.es>
+BugReports: https://github.com/albagc/SCOUTerRpack.git
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 Depends: 
