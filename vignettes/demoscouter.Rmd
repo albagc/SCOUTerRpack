@@ -1,13 +1,10 @@
 ---
 title: "SCOUTer demo"
-output: rmarkdown::html_vignette
-  # html_document:
-  #   df_print: paged
-  #   toc: yes
-  # pdf_document:
-  #   fig_caption: yes
-  #   number_sections: yes
-  #   toc: yes
+output: 
+  html_document:
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
 vignette: >
   %\VignetteIndexEntry{SCOUTer demo} 
   %\VignetteEncoding{UTF-8} 
