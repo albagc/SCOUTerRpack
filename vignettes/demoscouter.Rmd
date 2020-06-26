@@ -32,6 +32,7 @@ library(SCOUTer)
 The demo matrix X (already loaded with the package) will be used for all the examples. First we build the PCA model (PCA - Model Building, _PCA-MB_).
 
 ```{r pcamb}
+X <- as.matrix(X)
 pcamodel_ref <- pcamb_classic(X, 2, 0.05, "cent")
 ```
 
