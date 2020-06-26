@@ -8,11 +8,11 @@
 #' @param iobs index of the observations whose value will be displayed.
 #' @param plotname string with the title of the plot. Set to "" by default.
 #' @param ylabelname string with the y-axis label. Set to "Contribution" by default.
-#' @param xlabelname string with the y-axis label. Set to "Variables" by default.
+#' @param xlabelname string with the y-axis label. Set to "" by default.
 #' @return ggplot object with the values of a vector with a customized geom_col layer.
 #' @import ggplot2
 #' @export
-custombar <- function(X, iobs, plotname = "", ylabelname = "Contribution", xlabelname = "ggplot2::"){
+custombar <- function(X, iobs, plotname = "", ylabelname = "Contribution", xlabelname = ""){
   df.plot <- data.frame(contribution = X[iobs,], element = seq(1,length(X[iobs,]), by = 1))
   ymax <- max(abs(X))
   barobj <- ggplot2::ggplot(df.plot) +
@@ -23,9 +23,9 @@ custombar <- function(X, iobs, plotname = "", ylabelname = "Contribution", xlabe
     ggplot2::coord_cartesian(ylim = c(-ymax, ymax)*1.1) +
     ggplot2::labs(x = xlabelname, y = ylabelname, title = paste0(plotname,"\n")) +
     ggplot2::theme_bw() +
-    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, size = 10), 
+    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, size = 14), 
                    legend.position = "none",
-                   axis.title.x = ggplot2::element_text(size = 8), 
-                   axis.title.y = ggplot2::element_text(size = 8))
+                   axis.title.x = ggplot2::element_text(size = 12), 
+                   axis.title.y = ggplot2::element_text(size = 12))
   return(barobj)
 }

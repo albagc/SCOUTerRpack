@@ -24,7 +24,7 @@ barwithucl <- function(x, iobs, ucl, plotname = "", ylabelname = "", xlabelname 
     ggplot2::coord_cartesian(ylim = c(0, max(x, ucl)*1.1)) +
     ggplot2::labs(x = xlabelname, y = ylabelname, title = paste0(plotname,"\n")) +
     ggplot2::theme_bw() +
-    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, size = 10),
-                   axis.title.x = ggplot2::element_text(size = 8))
+    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, size = 14),
+                   axis.title.x = ggplot2::element_text(size = 12))
   return(barobj)
 }

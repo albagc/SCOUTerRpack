@@ -4,13 +4,7 @@
 \alias{custombar}
 \title{custombar}
 \usage{
-custombar(
-  X,
-  iobs,
-  plotname = "",
-  ylabelname = "Contribution",
-  xlabelname = "ggplot2::"
-)
+custombar(X, iobs, plotname = "", ylabelname = "Contribution", xlabelname = "")
 }
 \arguments{
 \item{X}{matrix with observations as row vectors.}
@@ -21,7 +15,7 @@ custombar(
 
 \item{ylabelname}{string with the y-axis label. Set to "Contribution" by default.}
 
-\item{xlabelname}{string with the y-axis label. Set to "Variables" by default.}
+\item{xlabelname}{string with the y-axis label. Set to "" by default.}
 }
 \value{
 ggplot object with the values of a vector with a customized geom_col layer.

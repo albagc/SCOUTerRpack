@@ -51,10 +51,10 @@ distplotsimple <- function(T2, SPE, lim.t2, lim.spe, ncomp, obstag = matrix(0, l
     ggplot2::labs(x = bquote(italic(~T[.(ncomp)]^2)), y = "SPE", title = plottitle,
          subtitle = bquote(UCL[.(paste0((1-alpha)*100, "%"))])) +
     ggplot2::guides(colour = ggplot2::guide_legend("", override.aes = list(alpha = 1)), shape = ggplot2::guide_legend("")) +
-    ggplot2::theme(legend.position = "bottom", plot.title = ggplot2::element_text(hjust = 0.5, size = 10),
-          axis.title.x = ggplot2::element_text(face = "italic", size = 8),
-          axis.title.y = ggplot2::element_text(face = "italic", size = 8),
-          legend.direction = "vertical", legend.text = ggplot2::element_text(size = 8),
-          plot.subtitle = ggplot2::element_text(size = 6))
+    ggplot2::theme(legend.position = "bottom", plot.title = ggplot2::element_text(hjust = 0.5, size = 14),
+          axis.title.x = ggplot2::element_text(face = "italic", size = 12),
+          axis.title.y = ggplot2::element_text(face = "italic", size = 12),
+          legend.direction = "vertical", legend.text = ggplot2::element_text(size = 10),
+          plot.subtitle = ggplot2::element_text(size = 10))
   return(distplot)
 }
