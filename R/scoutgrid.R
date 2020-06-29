@@ -4,27 +4,38 @@
 #' Shift of an array following a grid pattern.
 #'
 #' @param X Matrix with observations that will be shifted as rows.
-#' @param pcaref List with the elemements of a PCA model: \code{m} (mean), \code{s} (standard deviation), \code{prepro} (preprocessing:
-#' \code{"none"}, \code{"cent"} or \code{"autosc"}), \code{P} (loading matrix), \code{lambda} (vector with variances of each PC).
-#' @param T2.target A number indicating the target value for the T^2_A after the shift. Set to \code{NA} by default.
-#' @param SPE.target A number indicating the target value for the SPE after the shift. Set to \code{NA} by default.
-#' @param nsteps.spe An integer indicating the number of steps in which the shift from the reference to
-#' the target value of the SPE will be performed. Set to \code{1} by default.
-#' @param nsteps.t2 An integer indicating the number of steps in which the shift from the reference to the
-#' target value of the T^2_A will be performed. Set to \code{1} by default.
-#' @param gspe A mumber indicating the term that will tune the spacing between steps for the SPE.
+#' @param pcaref List with the elements of a PCA model: 
+#' * \code{m}: mean.
+#' * \code{s}: standard deviation.
+#' * \code{prepro}: preprocessing: \code{"none"}, \code{"cent"} or \code{"autosc"}.
+#' * \code{P}: loading matrix.
+#' * \code{lambda}: vector with variances of each PC.
+#' @param T2.target A number indicating the target value for the T^2_A after the shift. 
+#' Set to \code{NA} by default.
+#' @param SPE.target A number indicating the target value for the SPE after the shift. 
+#' Set to \code{NA} by default.
+#' @param nsteps.spe An integer indicating the number of steps in which the shift from 
+#' the reference to the target value of the SPE will be performed. Set to \code{1} by default.
+#' @param nsteps.t2 An integer indicating the number of steps in which the shift from the 
+#' reference to the target value of the T^2_A will be performed. Set to \code{1} by default.
+#' @param gspe A number indicating the term that will tune the spacing between steps for the SPE. 
 #' Set to \code{1} by default (linear spacing).
-#' @param gt2 A mumber indicating the term that will tune the spacing between steps for the SPE.
+#' @param gt2 A number indicating the term that will tune the spacing between steps for the SPE. 
 #' Set to \code{1} by default (linear spacing).
-#' @return list with elements: \code{X}, matrix with the new and shifted data, \code{SPE} and \code{T2} vectors with the statistic values
-#' of each one of the new generated outliers or observations, elements \code{step.spe} and \code{step.t2} make reference to the step
-#' of each observation. Finally, the element \code{tag}, is a vector of ones as long as the number of generated observations.
+#' @return list with elements: 
+#' * \code{X}: matrix with the new and shifted data.
+#' * \code{SPE}: SPE of each one of the generated outliers in the list element \code{X}. 
+#' * \code{T2}: T^2 of each one of the generated outliers in the list element \code{X}.
+#' * \code{step.spe}: step of each observation according to the shift of the SPE.
+#' * \code{step.t2}: step of each observation according to the shift of the T^2.
+#' * \code{tag}: is a vector of ones as long as the number of generated observations.
 #' @examples 
 #' X <- as.matrix(X)
 #' pcamodel.ref <- pcamb_classic(X, 3, 0.1, "autosc") # PCA-MB with all observations
-#' # Shift a set of observations increasing the T^2  and the SPE in 3 and 2 linear and non-linear steps respectively:
-#' outgrid <- scoutgrid(X, pcamodel.ref, T2.target = matrix(40, n, 1), SPE.target = matrix(50, n, 1), nsteps.t2 = 3, 
-#' nsteps.spe = 2, gspe = 4)
+#' # Shift a set of observations increasing the T^2  and the SPE in 3 and 2 linear and 
+#' # non-linear steps respectively:
+#' outgrid <- scoutgrid(X, pcamodel.ref, T2.target = matrix(40, nrow(X), 1), 
+#' SPE.target = matrix(50, nrow(X), 1), nsteps.t2 = 3, nsteps.spe = 2, gspe = 4)
 #' @export
 scoutgrid <- function(X, pcaref, T2.target  = NA, SPE.target = NA, nsteps.t2 = 1, nsteps.spe = 1,
                        gspe = 1, gt2 = 1){
@@ -68,7 +79,8 @@ scoutgrid <- function(X, pcaref, T2.target  = NA, SPE.target = NA, nsteps.t2 = 1
   outscout$SPE <- spe.targets
   outscout$T2 <- t2.targets
   outscout$step.spe <- as.vector(kronecker(matrix(1, nsteps.t2*n, 1), t(1:nsteps.spe)))
-  outscout$step.t2 <- as.vector(kronecker(matrix(1, nsteps.spe, 1), as.vector(kronecker(matrix(1, n, 1), t(1:nsteps.t2)))))
+  outscout$step.t2 <- as.vector(kronecker(matrix(1, nsteps.spe, 1), 
+                                          as.vector(kronecker(matrix(1, n, 1), t(1:nsteps.t2)))))
   outscout$tag <- as.vector(matrix(1, nrow(Xout), 1))
   return(outscout)
 }

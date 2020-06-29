@@ -9,17 +9,31 @@ scoutsimple(X, pcaref, T2.target = NA, SPE.target = NA)
 \arguments{
 \item{X}{Matrix with observations that will be shifted as rows.}
 
-\item{pcaref}{List with the elemements of a PCA model: \code{m} (mean), \code{s} (standard deviation), \code{prepro} (preprocessing:
-\code{"none"}, \code{"cent"} or \code{"autosc"}), \code{P} (loading matrix), \code{lambda} (vector with variances of each PC).}
+\item{pcaref}{List with the elements of a PCA model:
+\itemize{
+\item \code{m}: mean.
+\item \code{s}: standard deviation.
+\item \code{prepro}: preprocessing: \code{"none"}, \code{"cent"} or \code{"autosc"}.
+\item \code{P}: loading matrix.
+\item \code{lambda}: vector with variances of each PC.
+}}
 
-\item{T2.target}{A number indicating the target value for the T^2_A after the shift. Set to \code{NA} by default.}
+\item{T2.target}{A number indicating the target value for the T^2_A after the shift.
+Set to \code{NA} by default.}
 
-\item{SPE.target}{A number indicating the target value for the SPE after the shift. Set to \code{NA} by default.}
+\item{SPE.target}{A number indicating the target value for the SPE after the shift.
+Set to \code{NA} by default.}
 }
 \value{
-list with elements: \code{X}, matrix with the new and shifted data, \code{SPE} and \code{T2} vectors with the statistic values
-of each one of the new generated outliers or observations, elements \code{step.spe} and \code{step.t2} make reference to the step
-of each observation. Finally, the element \code{tag}, is a vector of ones as long as the number of generated observations.
+list with elements:
+\itemize{
+\item \code{X}: matrix with the new and shifted data.
+\item \code{SPE}: SPE of each one of the generated outliers in the list element \code{X}.
+\item \code{T2}: T^2 of each one of the generated outliers in the list element \code{X}.
+\item \code{step.spe}: step of each observation according to the shift of the SPE.
+\item \code{step.t2}: step of each observation according to the shift of the T^2.
+\item \code{tag}: is a vector of ones as long as the number of generated observations.
+}
 }
 \description{
 Shift of an array with a single step.
@@ -28,5 +42,5 @@ Shift of an array with a single step.
 X <- as.matrix(X)
 pcamodel.ref <- pcamb_classic(X, 3, 0.1, "autosc") # PCA-MB with all observations
 # Shift a set of observations increasing only the T^2 in one step:
-outsimple <- scoutsimple(X, pcamodel.ref, T2.target = matrix(40, n, 1))
+outsimple <- scoutsimple(X, pcamodel.ref, T2.target = matrix(40, nrow(X), 1))
 }

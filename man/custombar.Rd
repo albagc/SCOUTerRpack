@@ -27,5 +27,6 @@ according to the range of the values in X.
 \examples{
 X <- as.matrix(X)
 custombar(X, 2)
-custombar(X, 2, plotname = "Observation 2", ylabelname = bquote(x.["j"]), xlabelname= "Variables")
+custombar(X, 2, plotname = "Observation 2", ylabelname = bquote(x.["j"]), 
+xlabelname= "Variables")
 }

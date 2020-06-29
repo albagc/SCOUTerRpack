@@ -7,25 +7,27 @@
 xshift(X, P, a, b)
 }
 \arguments{
-\item{X}{Matrix with observations that will be shifted}
+\item{X}{Matrix with observations that will be shifted.}
 
-\item{P}{Loading matrix of the PCA model according to which the shfit will be performed.}
+\item{P}{Loading matrix of the PCA model according to which the shift will be performed.}
 
 \item{a}{A number or vector tuning the shift in the direction of its projection.}
 
 \item{b}{A number or vector tuning the shift in the direction of its residual.}
 }
 \value{
-Matrix with shifted observation as rows, keeping the order of the input matrix \code{X}.
+Matrix with shifted observation as rows, keeping the order of the input matrix
+\code{X}.
 }
 \description{
-Shift of an observation. The performed operation results as a combination of two main directions: the direction of
-maximum gradient for the SPE (weighted by the parameter b) and the direction of the projection of the observation
-on the model (weighted by the parameter a).
+Shift of an observation. The performed operation results as a combination of two main
+directions: the direction of maximum gradient for the SPE (weighted by the parameter b)
+and the direction of the projection of the observation on the model (weighted by the
+parameter a).
 }
 \examples{
 X <- as.matrix(X)
 pcamodel.ref <- pcamb_classic(X, 3, 0.1, "autosc") # PCA-MB with all observations
 # Shift observation #10 increasing by a factor of 2 and 4 its T^2 and its SPE respectively
-x.new <- xshift(X[10,], pcamodel.ref$P, sqrt(2) - 1, sqrt-(4) - 1) 
+x.new <- xshift(X[10,], pcamodel.ref$P, sqrt(2) - 1, sqrt(4) - 1) 
 }

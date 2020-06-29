@@ -43,5 +43,5 @@ X <- as.matrix(X)
 pcamodel.ref <- pcamb_classic(X[1:40,], 3, 0.05, "cent")
 scoreplot(X, pcamodel.ref)
 tags <- dotag(X[1:40,], X[-c(1:40),])
-scoreplot(X, pcamodel.ref, obstag = tags, px = 2, pcy = 3, alpha = 0.1, plottitle = "T-plot")
+scoreplot(X, pcamodel.ref, obstag = tags, pcx = 2, pcy = 3, alpha = 0.1, plottitle = "T-plot")
 }

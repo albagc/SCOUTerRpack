@@ -10,19 +10,25 @@ obscontribpanel(pcax, pcaref, obsid = NA)
 \item{pcax}{A list with the elements of the PCA model that will be displayed:
 SPE, T^2_A and their constributions (E and T2matrix).}
 
-\item{pcaref}{A list with the PCA model according to which the distance and contributions are expressed.}
+\item{pcaref}{A list with the PCA model according to which the distance and
+contributions are expressed.}
 
-\item{obsid}{Integer with the index of the observation of interest. Default set to \code{NA}.}
+\item{obsid}{Integer with the index of the observation of interest. Default
+set to \code{NA}.}
 }
 \value{
 ggplot object with the generated bar plots in a 1 x 4 subplots layout.
 }
 \description{
-Information about T^2 and SPE statistics of an observation.
+Information about the Hotelling's T^2 and the Squared Predidiction Error (SPE)
+of an observation. The term T^2_A makes reference to the T^2 for a model with
+A principal components (PCs).
 }
 \examples{
 X <- as.matrix(X)
-pcamodel.ref <- pcamb_classic(X[1:40,], 2, 0.05, "cent") # PCA-MB with first 40 observations
+pcamodel.ref <- pcamb_classic(X[1:40,], 2, 0.05, "cent") # PCA-MB with first 
+# 40 observations
 pcaproj <- pcame(X[-c(1:40),], pcamodel.ref) # Project last observations
-obscontribpanel(pcaproj, pcamodel.ref, 2) # Information about the SPE and T^2 of the row #2
+obscontribpanel(pcaproj, pcamodel.ref, 2) # Information about the SPE and T^2 
+# of the row #2
 }
