@@ -13,6 +13,12 @@
 #' observation (\code{0} or \code{1}). Default value set to \code{matrix(0, nrow(X), 1)}.
 #' @param plottitle Optional string with the plot title. Set to \code{"Distance plot"} by default.
 #' @return ggplot object with the distance plot.
+#' @examples
+#' X <- as.matrix(X)
+#' pcamodel.ref <- pcamb_classic(X, 2, 0.05, "cent")
+#' distplot(X, pcamodel.ref)
+#' tags <- dotag(X[1:40,], X[-c(1:40),])
+#' distplot(X, pcamodel.ref, obstag = tags, plottitle = "D plot title")
 #' @export
 distplot <- function(X, pcaref, obstag = matrix(0, nrow(X), 1), plottitle =  "Distance plot\n") {
   # Calcualte the scores according to the PCA model in pcamodel list

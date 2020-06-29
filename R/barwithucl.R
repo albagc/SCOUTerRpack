@@ -13,6 +13,9 @@
 #' @return ggplot object with the individual value of a variable as a geom_col
 #' with an horizontal line reference.
 #' @import ggplot2
+#' @examples
+#' barwithucl(c(1:10), 6, 5)
+#' barwithucl(c(1:10), 6, 5, plotname = "Plot title", ylabelname = "Y label", xlabelname= "X label")
 #' @export
 barwithucl <- function(x, iobs, ucl, plotname = "", ylabelname = "", xlabelname = "Obs. Index"){
   df.plot <- data.frame(value = x[iobs], ucl = ucl, obs = iobs)

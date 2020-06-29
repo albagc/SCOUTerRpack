@@ -32,3 +32,10 @@ Coordinates are expressed in terms of the Hotelling's T^2 (x-axis) and the Squar
 Error (y-axis) obtained projecting X on the provided pca model.
 Observations can be identified by the obstag input argument.
 }
+\examples{
+X <- as.matrix(X)
+pcamodel.ref <- pcamb_classic(X, 2, 0.05, "cent")
+distplot(X, pcamodel.ref)
+tags <- dotag(X[1:40,], X[-c(1:40),])
+distplot(X, pcamodel.ref, obstag = tags, plottitle = "D plot title")
+}

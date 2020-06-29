@@ -39,3 +39,11 @@ of each observation. Finally, the element \code{tag}, is a vector of ones as lon
 \description{
 Shift of an array following a step-wise pattern.
 }
+\examples{
+X <- as.matrix(X)
+pcamodel.ref <- pcamb_classic(X, 3, 0.1, "autosc") # PCA-MB with all observations
+# Shift a set of observations increasing the T^2  and the SPE in 4 linear steps:
+outsteps <- scoutsteps(X, pcamodel.ref, T2.target = matrix(40, n, 1), SPE.target = matrix(50, n, 1), nsteps = 4)
+# Shift a set of observations increasing the SPE in 4 non-linear steps:
+outsteps <- scoutsteps(X, pcamodel.ref, SPE.target = matrix(50, n, 1), nsteps = 4, gspe = 0.3)
+}

@@ -45,3 +45,10 @@ of each observation. Finally, the element \code{tag}, is a vector of ones as lon
 \description{
 Shift of an array following a grid pattern.
 }
+\examples{
+X <- as.matrix(X)
+pcamodel.ref <- pcamb_classic(X, 3, 0.1, "autosc") # PCA-MB with all observations
+# Shift a set of observations increasing the T^2  and the SPE in 3 and 2 linear and non-linear steps respectively:
+outgrid <- scoutgrid(X, pcamodel.ref, T2.target = matrix(40, n, 1), SPE.target = matrix(50, n, 1), nsteps.t2 = 3, 
+nsteps.spe = 2, gspe = 4)
+}

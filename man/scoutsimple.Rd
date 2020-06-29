@@ -24,3 +24,9 @@ of each observation. Finally, the element \code{tag}, is a vector of ones as lon
 \description{
 Shift of an array with a single step.
 }
+\examples{
+X <- as.matrix(X)
+pcamodel.ref <- pcamb_classic(X, 3, 0.1, "autosc") # PCA-MB with all observations
+# Shift a set of observations increasing only the T^2 in one step:
+outsimple <- scoutsimple(X, pcamodel.ref, T2.target = matrix(40, n, 1))
+}

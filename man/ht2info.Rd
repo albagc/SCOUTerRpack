@@ -24,3 +24,9 @@ Returns information about T^2 statistic for an observation. Two subplots show th
 T^2 statistic, i.e.: a bar plot indicating the value of the statistic for the observation, and a bar plot with the contribution
 that each component had for the T^2 value
 }
+\examples{
+X <- as.matrix(X)
+pcamodel.ref <- pcamb_classic(X[1:40,], 2, 0.05, "cent") # PCA-MB with first 40 observations
+pcaproj <- pcame(X[-c(1:40),], pcamodel.ref) # Project last observations
+ht2info(pcaproj$T2, pcaproj$T2matrix, pcamodel.ref$limt2, 2) # Information about the T^2 of the row #2
+}

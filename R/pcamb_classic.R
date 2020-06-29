@@ -18,6 +18,10 @@
 #' \code{ncomp} (number of PCs of the PCA model, A), \code{alpha} (value of the type I risk assumed to calculate the Upper Control
 #' Limits of the SPE, T^2_A and scores), \code{n} (dimension of the number of rows in X), \code{S} (covariance matrix of X).
 #' @import stats
+#' @examples 
+#' X <- as.matrix(X)
+#' pcamodel.ref <- pcamb_classic(X, 3, 0.1, "autosc") # PCA-MB with all observations
+#' pcamodel.ref <- pcamb_classic(X[1:40,], 2, 0.05, "cent") # PCA-MB with first 40 observations
 #' @export
 pcamb_classic <- function(X, ncomp, alpha, prepro) {
   m <- colMeans(X)

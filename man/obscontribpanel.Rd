@@ -20,3 +20,9 @@ ggplot object with the generated bar plots in a 1 x 4 subplots layout.
 \description{
 Information about T^2 and SPE statistics of an observation.
 }
+\examples{
+X <- as.matrix(X)
+pcamodel.ref <- pcamb_classic(X[1:40,], 2, 0.05, "cent") # PCA-MB with first 40 observations
+pcaproj <- pcame(X[-c(1:40),], pcamodel.ref) # Project last observations
+obscontribpanel(pcaproj, pcamodel.ref, 2) # Information about the SPE and T^2 of the row #2
+}

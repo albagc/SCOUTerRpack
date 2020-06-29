@@ -10,6 +10,11 @@
 #' @param a A number or vector tuning the shift in the direction of its projection.
 #' @param b A number or vector tuning the shift in the direction of its residual.
 #' @return Matrix with shifted observation as rows, keeping the order of the input matrix \code{X}.
+#' @examples 
+#' X <- as.matrix(X)
+#' pcamodel.ref <- pcamb_classic(X, 3, 0.1, "autosc") # PCA-MB with all observations
+#' # Shift observation #10 increasing by a factor of 2 and 4 its T^2 and its SPE respectively
+#' x.new <- xshift(X[10,], pcamodel.ref$P, sqrt(2) - 1, sqrt-(4) - 1) 
 #' @export
 xshift <- function(X, P, a, b){
   if (is.null(dim(X)) == TRUE){

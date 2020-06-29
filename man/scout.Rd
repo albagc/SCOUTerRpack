@@ -50,3 +50,12 @@ of each observation. Finally, the element \code{tag}, is a vector of ones as lon
 \description{
 Shift of an observation following a selected pattern.
 }
+\examples{
+X <- as.matrix(X)
+pcamodel.ref <- pcamb_classic(X, 3, 0.1, "autosc") # PCA-MB with all observations
+# Shift the first observation:
+outscout <- scout(X[1,], pcamodel.ref, T2.y = 40, SPE.y = 50, nsteps.spe = 3, nsteps.t2 = 2, gspe = 3, gt2 = 0.5, mode = "grid")
+
+# Shift a set of observations increasing only the T^2 in one step:
+outscout <- scout(X, pcamodel.ref, T2.y = matrix(40, n, 1), mode = "simple")
+}

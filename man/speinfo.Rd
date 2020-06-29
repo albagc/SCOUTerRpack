@@ -24,3 +24,9 @@ Information about the Squared Prediction Error (SPE) of an observation. Two subp
 SPE statistic, i.e.: a bar plot indicating the value of the statistic for the observation, and a bar plot with the contribution
 that each component had for the SPE value
 }
+\examples{
+X <- as.matrix(X)
+pcamodel.ref <- pcamb_classic(X[1:40,], 2, 0.05, "cent") # PCA-MB with first 40 observations
+pcaproj <- pcame(X[-c(1:40),], pcamodel.ref) # Project last observations
+speinfo(pcaproj$SPE, pcaproj$E, pcamodel.ref$limspe, 2) # Information about the SPE of the row #2
+}

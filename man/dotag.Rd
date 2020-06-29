@@ -17,3 +17,7 @@ dotag(X.zeros = NA, X.ones = NA)
 \description{
 Returns the tag vector to identify two different data sets
 }
+\examples{
+X <- as.matrix(X)
+dotag(X[1:40,], X[-c(1:40),])
+}

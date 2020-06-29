@@ -30,3 +30,8 @@ Limits of the SPE, T^2_A and scores), \code{n} (dimension of the number of rows 
 \description{
 PCA model fitting according to a matrix X using svd.
 }
+\examples{
+X <- as.matrix(X)
+pcamodel.ref <- pcamb_classic(X, 3, 0.1, "autosc") # PCA-MB with all observations
+pcamodel.ref <- pcamb_classic(X[1:40,], 2, 0.05, "cent") # PCA-MB with first 40 observations
+}

@@ -45,3 +45,13 @@ Coordinates are expressed in terms of the Hotelling's T^2 (x-axis) and the Squar
 Error (y-axis) obtained projecting X on the provided pca model.
 Observations can be identified by the obstag input argument.
 }
+\examples{
+X <- as.matrix(X)
+pcamodel.ref <- pcamb_classic(X[1:40,], 2, 0.05, "cent") # PCA-MB with first 40 observations
+pcaproj <- pcame(X[-c(1:40),], pcamodel.ref) # Project last observations
+distplotsimple(pcaproj$T2, pcaproj$SPE, pcamodel.ref$limt2, pcamodel.ref$limspe, pcamodel.ref$ncomp)
+
+pcaproj <- pcame(X, pcamodel.ref) # Project all observations
+tags <- dotag(X[1:40,], X[-c(1:40),]) # 0's for observations used in PCA-MB
+distplotsimple(pcaproj$T2, pcaproj$SPE, pcamodel.ref$limt2, pcamodel.ref$limspe, pcamodel.ref$ncomp, obstag = tags)
+}

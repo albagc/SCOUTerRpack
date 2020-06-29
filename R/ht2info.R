@@ -12,6 +12,11 @@
 #' @param iobs Integer with the index of the observation of interest. Default value set to \code{NA}.
 #' @return ggplot object with the generated bar plots.
 #' @import ggplot2 ggpubr
+#' @examples 
+#' X <- as.matrix(X)
+#' pcamodel.ref <- pcamb_classic(X[1:40,], 2, 0.05, "cent") # PCA-MB with first 40 observations
+#' pcaproj <- pcame(X[-c(1:40),], pcamodel.ref) # Project last observations
+#' ht2info(pcaproj$T2, pcaproj$T2matrix, pcamodel.ref$limt2, 2) # Information about the T^2 of the row #2
 #' @export
 ht2info <- function(HT2, T2matrix, limht2, iobs = NA){
   bar.ht2 <- barwithucl(HT2, ucl = limht2, iobs = iobs)  +

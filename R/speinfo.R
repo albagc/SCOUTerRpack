@@ -12,6 +12,11 @@
 #' @param iobs Integer with the index of the observation of interest. Default value set to \code{NA}.
 #' @return ggplot object with the generated bar plots.
 #' @import ggplot2
+#' @examples 
+#' X <- as.matrix(X)
+#' pcamodel.ref <- pcamb_classic(X[1:40,], 2, 0.05, "cent") # PCA-MB with first 40 observations
+#' pcaproj <- pcame(X[-c(1:40),], pcamodel.ref) # Project last observations
+#' speinfo(pcaproj$SPE, pcaproj$E, pcamodel.ref$limspe, 2) # Information about the SPE of the row #2
 #' @export
 speinfo <- function(SPE, E, limspe, iobs = NA){
   bar.spe <- barwithucl(SPE, ucl = limspe, iobs = iobs, ylabelname = "SPE") +

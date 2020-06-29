@@ -34,3 +34,7 @@ with an horizontal line reference.
 Single bar plot with Upper Control Limis. Customized title and labels.
 Y-Axis limits are fixed according to the range of the values in x.
 }
+\examples{
+barwithucl(c(1:10), 6, 5)
+barwithucl(c(1:10), 6, 5, plotname = "Plot title", ylabelname = "Y label", xlabelname= "X label")
+}

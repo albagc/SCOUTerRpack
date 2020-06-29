@@ -45,3 +45,11 @@ ggplot object with the generated score plot.
 Returns the distance plot and the score plot providing a dataset and a pca model. Observations can
 be identified by the obstag input argument.
 }
+\examples{
+X <- as.matrix(X)
+pcamodel.ref <- pcamb_classic(X[1:40,], 3, 0.05, "cent")
+dscplot(X, pcamodel.ref)
+dscplot(X, pcamodel.ref, nrow = 2, ncol = 1)
+tags <- dotag(X[1:40,], X[-c(1:40),])
+dscplot(X, pcamodel.ref, obstag = tags, pcy = 3)
+}

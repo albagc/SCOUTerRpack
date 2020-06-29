@@ -11,6 +11,10 @@
 #' @param xlabelname string with the y-axis label. Set to "" by default.
 #' @return ggplot object with the values of a vector with a customized geom_col layer.
 #' @import ggplot2
+#' @examples
+#' X <- as.matrix(X)
+#' custombar(X, 2)
+#' custombar(X, 2, plotname = "Observation 2", ylabelname = bquote(x.["j"]), xlabelname= "Variables")
 #' @export
 custombar <- function(X, iobs, plotname = "", ylabelname = "Contribution", xlabelname = ""){
   df.plot <- data.frame(contribution = X[iobs,], element = seq(1,length(X[iobs,]), by = 1))

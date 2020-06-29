@@ -15,6 +15,15 @@
 #' @param plottitle Optional string with the plot title. Set to \code{"Score plot"} by default.
 #' @return ggplot object with the generated score plot.
 #' @import ggplot2 stats
+#' @examples 
+#' X <- as.matrix(X)
+#' pcamodel.ref <- pcamb_classic(X[1:40,], 3, 0.05, "cent")
+#' pcaproj <- pcame(X, pcamodel.ref) # Project last observations
+#' scoreplotsimple(pcaproj$T)
+#' 
+#' pcaproj <- pcame(X[-c(1:40),], pcamodel.ref) # Project all observations
+#' tags <- dotag(X[1:40,], X[-c(1:40),]) # 0's for observations used in PCA-MB
+#' scoreplotsimple(pcaproj$T, pcx = 2, pcy = 3, obstag = tags)
 #' @export
 scoreplotsimple <- function(Tscores, pcx = 1, pcy  = 2, obstag = matrix(0, nrow(Tscores), 1),
                             alpha = 0.05, varT = stats::var(Tscores), plottitle = "Score plot\n"){

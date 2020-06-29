@@ -23,3 +23,9 @@ Shift of an observation. The performed operation results as a combination of two
 maximum gradient for the SPE (weighted by the parameter b) and the direction of the projection of the observation
 on the model (weighted by the parameter a).
 }
+\examples{
+X <- as.matrix(X)
+pcamodel.ref <- pcamb_classic(X, 3, 0.1, "autosc") # PCA-MB with all observations
+# Shift observation #10 increasing by a factor of 2 and 4 its T^2 and its SPE respectively
+x.new <- xshift(X[10,], pcamodel.ref$P, sqrt(2) - 1, sqrt-(4) - 1) 
+}

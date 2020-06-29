@@ -14,6 +14,13 @@
 #' not explained by the PCA model), \code{SPE} (vector with the SPE for each observation of \code{X}), \code{T2} (vector with the T^_A for
 #' each observation of \code{X}), \code{T2matrix} (matrix with the contributions of each PC to the T^2_A for each observation of \code{X})
 #' and \code{Xrec} (matrix with the reconstructed part of \code{X}, i.e. the part of \code{X} explained by the PCA model).
+#' @examples 
+#' X <- as.matrix(X)
+#' pcamodel.ref <- pcamb_classic(X, 3, 0.1, "autosc") # PCA-MB with all observations
+#' pcame(X, pcamodel.ref) # Project all observations onto PCA model of pcamodel.ref
+#' 
+#' pcamodel.ref <- pcamb_classic(X[1:40,], 2, 0.05, "cent") # PCA-MB with first 40 observations
+#' pcame(X[-c(1:40),], pcamodel.ref) # Project observations not used in PCA-MB onto PCA model of pcamodel.ref
 #' @export
 pcame <- function(X, pcaref){
   if (is.null(dim(X)) == TRUE){

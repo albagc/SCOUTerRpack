@@ -3,8 +3,7 @@
 \docType{data}
 \name{X}
 \alias{X}
-\title{Demo dataset with 50 observations and 5 normally distributed variables with
-two Principal Components explaining the 80\% of the total variance.}
+\title{Demo dataset}
 \format{
 A matrix data frame with 50 rows and 5 normally distributed variables.
 }
@@ -12,6 +11,8 @@ A matrix data frame with 50 rows and 5 normally distributed variables.
 X
 }
 \description{
-It is a small data set to use as a demo for the SCOUTer package.
+It is a small data set to use as a demo for the SCOUTer package. It consists of
+normally distributed variables, with two Principal Components explaining an
+80\% of the total variance.
 }
 \keyword{datasets}

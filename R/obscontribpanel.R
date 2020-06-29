@@ -9,6 +9,11 @@
 #' @param obsid Integer with the index of the observation of interest. Default set to \code{NA}.
 #' @return ggplot object with the generated bar plots in a 1 x 4 subplots layout.
 #' @import ggpubr
+#' @examples 
+#' X <- as.matrix(X)
+#' pcamodel.ref <- pcamb_classic(X[1:40,], 2, 0.05, "cent") # PCA-MB with first 40 observations
+#' pcaproj <- pcame(X[-c(1:40),], pcamodel.ref) # Project last observations
+#' obscontribpanel(pcaproj, pcamodel.ref, 2) # Information about the SPE and T^2 of the row #2
 #' @export
 obscontribpanel <- function(pcax, pcaref, obsid = NA){
   HT2A.plots <- ht2info(pcax$T2, pcax$T2matrix, pcaref$limt2, iobs = obsid)

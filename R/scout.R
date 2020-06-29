@@ -20,6 +20,14 @@
 #' @return list with elements: \code{X}, matrix with the new and shifted data, \code{SPE} and \code{T2} vectors with the statistic values
 #' of each one of the new generated outliers or observations, elements \code{step.spe} and \code{step.t2} make reference to the step
 #' of each observation. Finally, the element \code{tag}, is a vector of ones as long as the number of generated observations.
+#' @examples 
+#' X <- as.matrix(X)
+#' pcamodel.ref <- pcamb_classic(X, 3, 0.1, "autosc") # PCA-MB with all observations
+#' # Shift the first observation:
+#' outscout <- scout(X[1,], pcamodel.ref, T2.y = 40, SPE.y = 50, nsteps.spe = 3, nsteps.t2 = 2, gspe = 3, gt2 = 0.5, mode = "grid")
+#' 
+#' # Shift a set of observations increasing only the T^2 in one step:
+#' outscout <- scout(X, pcamodel.ref, T2.y = matrix(40, n, 1), mode = "simple")
 #' @export
 scout <- function(X, pcaref, T2.y = NA, SPE.y = NA, nsteps = 1, nsteps.spe = 1,
                        nsteps.t2 = 1, gspe = 1, gt2 = 1, mode = "simple"){

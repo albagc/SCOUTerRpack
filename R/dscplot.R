@@ -18,6 +18,13 @@
 #' by default.
 #' @return ggplot object with the generated score plot.
 #' @import ggpubr
+#' @examples 
+#' X <- as.matrix(X)
+#' pcamodel.ref <- pcamb_classic(X[1:40,], 3, 0.05, "cent")
+#' dscplot(X, pcamodel.ref)
+#' dscplot(X, pcamodel.ref, nrow = 2, ncol = 1)
+#' tags <- dotag(X[1:40,], X[-c(1:40),])
+#' dscplot(X, pcamodel.ref, obstag = tags, pcy = 3)
 #' @export
 
 dscplot <- function(X, pcamodel, obstag = matrix(0, nrow(X), 1), pcx = 1, pcy = 2, 

@@ -27,3 +27,11 @@ Projection of X onto a PCA model.
 of the observations in X, along with the SPE, Hotelling's T^2_A, contribution elements and the reconstruction of X obtained by the
 PCA model.
 }
+\examples{
+X <- as.matrix(X)
+pcamodel.ref <- pcamb_classic(X, 3, 0.1, "autosc") # PCA-MB with all observations
+pcame(X, pcamodel.ref) # Project all observations onto PCA model of pcamodel.ref
+
+pcamodel.ref <- pcamb_classic(X[1:40,], 2, 0.05, "cent") # PCA-MB with first 40 observations
+pcame(X[-c(1:40),], pcamodel.ref) # Project observations not used in PCA-MB onto PCA model of pcamodel.ref
+}
