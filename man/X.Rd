@@ -6,7 +6,7 @@
 \title{Demo dataset with 50 observations and 5 normally distributed variables with
 two Principal Components explaining the 80\% of the total variance.}
 \format{
-A data frame with 50 rows and 5 normally distributed variables.
+A matrix data frame with 50 rows and 5 normally distributed variables.
 }
 \usage{
 X
