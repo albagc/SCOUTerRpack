@@ -11,13 +11,20 @@
 #' @param xlabelname string with the y-axis label. Set to "" by default.
 #' @return ggplot object with the values of a vector with a customized geom_col layer.
 #' @import ggplot2
+#' @examples
+#' X <- as.matrix(X)
+#' custombar(X, 2)
+#' custombar(X, 2, plotname = "Observation 2", ylabelname = bquote(x.["j"]), 
+#' xlabelname= "Variables")
 #' @export
-custombar <- function(X, iobs, plotname = "", ylabelname = "Contribution", xlabelname = ""){
+custombar <- function(X, iobs, plotname = "", ylabelname = "Contribution", 
+                      xlabelname = ""){
   df.plot <- data.frame(contribution = X[iobs,], element = seq(1,length(X[iobs,]), by = 1))
   ymax <- max(abs(X))
   barobj <- ggplot2::ggplot(df.plot) +
-    ggplot2::geom_col(ggplot2::aes(x = seq(1,length(X[iobs,]), by = 1), y = X[iobs,], alpha = 0.6),
-                                                         width = 0.75, fill = "blue", show.legend = FALSE) +
+    ggplot2::geom_col(ggplot2::aes(x = seq(1,length(X[iobs,]), by = 1), y = X[iobs,], 
+                                   alpha = 0.6), 
+                      width = 0.75, fill = "blue", show.legend = FALSE) +
     ggplot2::geom_hline(yintercept = 0, colour = "black") +
     ggplot2::scale_x_continuous(breaks = seq(1, ncol(X), by = 1)) +
     ggplot2::coord_cartesian(ylim = c(-ymax, ymax)*1.1) +

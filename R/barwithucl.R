@@ -13,12 +13,21 @@
 #' @return ggplot object with the individual value of a variable as a geom_col
 #' with an horizontal line reference.
 #' @import ggplot2
+#' @examples
+#' barwithucl(c(1:10), 6, 5)
+#' barwithucl(c(1:10), 6, 5, plotname = "Plot title", ylabelname = "Y label", 
+#' xlabelname= "X label")
 #' @export
-barwithucl <- function(x, iobs, ucl, plotname = "", ylabelname = "", xlabelname = "Obs. Index"){
+barwithucl <- function(x, iobs, ucl, plotname = "", ylabelname = "", 
+                       xlabelname = "Obs. Index"){
   df.plot <- data.frame(value = x[iobs], ucl = ucl, obs = iobs)
-  barobj <- ggplot2::ggplot(df.plot) + ggplot2::geom_col(ggplot2::aes(x = iobs, y = x[iobs]), alpha = 0.6,
-                                           width = 0.75, fill = "blue", show.legend = FALSE) +
-    ggplot2::geom_hline(ggplot2::aes(yintercept = ucl), linetype = 2, colour = "red", size = 0.75, show.legend = TRUE) +
+  barobj <- ggplot2::ggplot(df.plot) + ggplot2::geom_col(ggplot2::aes(x = iobs, 
+                                                                      y = x[iobs]), 
+                                                         alpha = 0.6, width = 0.75, 
+                                                         fill = "blue", 
+                                                         show.legend = FALSE) +
+    ggplot2::geom_hline(ggplot2::aes(yintercept = ucl), linetype = 2, colour = "red", 
+                        size = 0.75, show.legend = TRUE) +
     ggplot2::scale_linetype_manual(name = "", values = c("UCL", 2)) +
     ggplot2::scale_x_continuous(breaks = c(iobs-1, iobs, iobs+1)) +
     ggplot2::coord_cartesian(ylim = c(0, max(x, ucl)*1.1)) +

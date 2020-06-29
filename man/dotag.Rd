@@ -12,8 +12,13 @@ dotag(X.zeros = NA, X.ones = NA)
 \item{X.ones}{Matrix with the tag \code{1}.}
 }
 \value{
-\code{tag.all} vector with 0-tags for observations in \code{X.zeros} and 1-tags for observations in \code{X.ones}.
+\code{tag.all} vector with 0 tags for observations in \code{X.zeros} and
+1 tags for observations in \code{X.ones}.
 }
 \description{
 Returns the tag vector to identify two different data sets
+}
+\examples{
+X <- as.matrix(X)
+dotag(X[1:40,], X[-c(1:40),])
 }

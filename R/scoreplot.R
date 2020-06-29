@@ -14,6 +14,12 @@
 #' set to \code{0.05} (5 %) by default.
 #' @param plottitle Optional string with the plot title. Set to \code{"Score plot"} by default.
 #' @return ggplot object with the generated score plot.
+#' @examples 
+#' X <- as.matrix(X)
+#' pcamodel.ref <- pcamb_classic(X[1:40,], 3, 0.05, "cent")
+#' scoreplot(X, pcamodel.ref)
+#' tags <- dotag(X[1:40,], X[-c(1:40),])
+#' scoreplot(X, pcamodel.ref, obstag = tags, pcx = 2, pcy = 3, alpha = 0.1, plottitle = "T-plot")
 #' @export
 scoreplot <- function(X, pcamodel, obstag = matrix(0, nrow(X), 1), pcx = 1, pcy = 2, alpha = 0.05, plottitle = "Score plot\n"){
   # Calcualte the scores according to the PCA model in pcamodel list

@@ -38,3 +38,10 @@ ggplot object with the generated score plot.
 Returns the score plot providing a dataset and a pca model. Observations can
 be identified by the obstag input argument.
 }
+\examples{
+X <- as.matrix(X)
+pcamodel.ref <- pcamb_classic(X[1:40,], 3, 0.05, "cent")
+scoreplot(X, pcamodel.ref)
+tags <- dotag(X[1:40,], X[-c(1:40),])
+scoreplot(X, pcamodel.ref, obstag = tags, pcx = 2, pcy = 3, alpha = 0.1, plottitle = "T-plot")
+}

@@ -24,3 +24,9 @@ ggplot object with the values of a vector with a customized geom_col layer.
 Bar plot with customized title and labels. Y-Axis limits are fixed
 according to the range of the values in X.
 }
+\examples{
+X <- as.matrix(X)
+custombar(X, 2)
+custombar(X, 2, plotname = "Observation 2", ylabelname = bquote(x.["j"]), 
+xlabelname= "Variables")
+}

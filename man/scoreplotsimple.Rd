@@ -15,19 +15,23 @@ scoreplotsimple(
 )
 }
 \arguments{
-\item{Tscores}{Matrix with the scores to be displayed, with the information of each PC stored by columns.}
+\item{Tscores}{Matrix with the scores to be displayed, with the information of each Principal
+Component (PC) stored by columns.}
 
-\item{pcx}{Optional integer with the number of the PC in the horizontal axis. Set to \code{1} by default.}
+\item{pcx}{Optional integer with the number of the PC in the horizontal axis. Set to \code{1}
+by default.}
 
-\item{pcy}{Optional integer with the number of the PC in the vertical axis. Set to \code{2} by default.}
+\item{pcy}{Optional integer with the number of the PC in the vertical axis. Set to \code{2}
+by default.}
 
 \item{obstag}{Optional column vector of integers indicating the group of each
 observation (\code{0} or \code{1}). Default value set to \code{matrix(0, nrow(X), 1)}.}
 
-\item{alpha}{Optional number between 0 and 1 expressing the type I risk assumed in the compuatation of the confidence ellipse,
-set to \code{0.05} (5 \%) by default.}
+\item{alpha}{Optional number between 0 and 1 expressing the type I risk assumed in the
+computation of the confidence ellipse, set to \code{0.05} (5 \%) by default.}
 
-\item{varT}{Optional parameter expressing the variance of each PC. Set to \code{var(Tscores)} by default.}
+\item{varT}{Optional parameter expressing the variance of each PC. Set to \code{var(Tscores)}
+by default.}
 
 \item{plottitle}{Optional string with the plot title. Set to \code{"Score plot"} by default.}
 }
@@ -37,4 +41,14 @@ ggplot object with the generated score plot.
 \description{
 Returns the score plot providing the scores matrix, \strong{T}. Observations can
 be identified by the obstag input argument.
+}
+\examples{
+X <- as.matrix(X)
+pcamodel.ref <- pcamb_classic(X[1:40,], 3, 0.05, "cent")
+pcaproj <- pcame(X, pcamodel.ref) # Project last observations
+scoreplotsimple(pcaproj$Tscores)
+
+pcaproj <- pcame(X[-c(1:40),], pcamodel.ref) # Project all observations
+tags <- dotag(X[1:40,], X[-c(1:40),]) # 0's for observations used in PCA-MB
+scoreplotsimple(pcaproj$Tscores, pcx = 2, pcy = 3, obstag = tags)
 }

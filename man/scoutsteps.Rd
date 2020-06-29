@@ -17,25 +17,51 @@ scoutsteps(
 \arguments{
 \item{X}{Matrix with observations that will be shifted as rows.}
 
-\item{pcaref}{List with the elemements of a PCA model: \code{m} (mean), \code{s} (standard deviation), \code{prepro} (preprocessing:
-\code{"none"}, \code{"cent"} or \code{"autosc"}), \code{P} (loading matrix), \code{lambda} (vector with variances of each PC).}
+\item{pcaref}{List with the elements of a PCA model:
+\itemize{
+\item \code{m}: mean.
+\item \code{s}: standard deviation.
+\item \code{prepro}: preprocessing: \code{"none"}, \code{"cent"} or \code{"autosc"}.
+\item \code{P}: loading matrix.
+\item \code{lambda}: vector with variances of each PC.
+}}
 
-\item{T2.target}{A number indicating the target value for the T^2_A after the shift. Set to \code{NA} by default.}
+\item{T2.target}{A number indicating the target value for the Hotelling's T^2_A after the shift.
+Set to \code{NA} by default.}
 
-\item{SPE.target}{A number indicating the target value for the SPE after the shift. Set to \code{NA} by default.}
+\item{SPE.target}{A number indicating the target value for the Squared Prediction Error after
+the shift. Set to \code{NA} by default.}
 
-\item{nsteps}{An integer indicating the number of steps in which the shift from the reference to the target
-values of the SPE and the T^2_A will be performed. Set to \code{1} by default.}
+\item{nsteps}{A number indicating the number of steps between the reference and target
+values of the SPE and the T^2. Set to \code{1} by default.}
 
-\item{gspe}{A mumber indicating the term that will tune the spacing between steps for the SPE. Set to \code{1} by default (linear spacing).}
+\item{gspe}{A number indicating the term that will tune the spacing between steps for the SPE.
+Set to \code{1} by default (linear spacing).}
 
-\item{gt2}{A mumber indicating the term that will tune the spacing between steps for the SPE. Set to \code{1} by default (linear spacing).}
+\item{gt2}{A number indicating the term that will tune the spacing between steps for the SPE.
+Set to \code{1} by default (linear spacing).}
 }
 \value{
-list with elements: \code{X}, matrix with the new and shifted data, \code{SPE} and \code{T2} vectors with the statistic values
-of each one of the new generated outliers or observations, elements \code{step.spe} and \code{step.t2} make reference to the step
-of each observation. Finally, the element \code{tag}, is a vector of ones as long as the number of generated observations.
+list with elements:
+\itemize{
+\item \code{X}: matrix with the new and shifted data.
+\item \code{SPE}: SPE of each one of the generated outliers in the list element \code{X}.
+\item \code{T2}: T^2 of each one of the generated outliers in the list element \code{X}.
+\item \code{step.spe}: step of each observation according to the shift of the SPE.
+\item \code{step.t2}: step of each observation according to the shift of the T^2.
+\item \code{tag}: is a vector of ones as long as the number of generated observations.
+}
 }
 \description{
 Shift of an array following a step-wise pattern.
+}
+\examples{
+X <- as.matrix(X)
+pcamodel.ref <- pcamb_classic(X, 3, 0.1, "autosc") # PCA-MB with all observations
+# Shift a set of observations increasing the T^2  and the SPE in 4 linear steps:
+outsteps <- scoutsteps(X, pcamodel.ref, T2.target = matrix(40, nrow(X), 1), 
+SPE.target = matrix(50, nrow(X), 1), nsteps = 4)
+# Shift a set of observations increasing the SPE in 4 non-linear steps:
+outsteps <- scoutsteps(X, pcamodel.ref, SPE.target = matrix(50, nrow(X), 1), nsteps = 4, 
+gspe = 0.3)
 }

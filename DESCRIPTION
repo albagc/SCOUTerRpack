@@ -18,15 +18,22 @@ Authors@R:
            family = "Ferrer",
            role = "aut",
            email = "aferrer@eio.upv.es"))
-Description: Using Principal Component Analysis as a base model, 'SCOUTer' offers a new approach to simulate outliers in a simple and precise way. The user can generate new observations defining them by a pair of well-known statistics: the Squared Prediction Error and the Hotelling's T^2 statistics. Just by introducing the target values of the SPE and T^2, 'SCOUTer' returns a new set of observations with the desired target properties. Authors: Alba González, Abel Folch-Fortuny, Francisco Arteaga and Alberto Ferrer (2020).
+Description: Using principal component analysis as a base model, 'SCOUTer' 
+    offers a new approach to simulate outliers in a simple and precise way. 
+    The user can generate new observations defining them by a pair of well-known 
+    statistics: the Squared Prediction Error (SPE) and the Hotelling's T^2 (T^2) 
+    statistics. Just by introducing the target values of the SPE and T^2, 'SCOUTer' 
+    returns a new set of observations with the desired target properties. 
+    Authors: Alba González, Abel Folch-Fortuny, Francisco Arteaga and 
+    Alberto Ferrer (2020).
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Maintainer: Alba Gonzalez Cebrian <algonceb@upv.es>
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Depends: 
-    R (>= 2.10),
+    R (>= 3.5.0),
     ggplot2,
     ggpubr,
     stats

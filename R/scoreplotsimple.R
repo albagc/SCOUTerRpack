@@ -4,17 +4,30 @@
 #' Returns the score plot providing the scores matrix, \strong{T}. Observations can 
 #' be identified by the obstag input argument.
 #'
-#' @param Tscores Matrix with the scores to be displayed, with the information of each PC stored by columns.
-#' @param pcx Optional integer with the number of the PC in the horizontal axis. Set to \code{1} by default.
-#' @param pcy Optional integer with the number of the PC in the vertical axis. Set to \code{2} by default.
+#' @param Tscores Matrix with the scores to be displayed, with the information of each Principal
+#' Component (PC) stored by columns.
+#' @param pcx Optional integer with the number of the PC in the horizontal axis. Set to \code{1}
+#'  by default.
+#' @param pcy Optional integer with the number of the PC in the vertical axis. Set to \code{2} 
+#' by default.
 #' @param obstag Optional column vector of integers indicating the group of each
 #' observation (\code{0} or \code{1}). Default value set to \code{matrix(0, nrow(X), 1)}.
-#' @param alpha Optional number between 0 and 1 expressing the type I risk assumed in the compuatation of the confidence ellipse,
-#' set to \code{0.05} (5 %) by default.
-#' @param varT Optional parameter expressing the variance of each PC. Set to \code{var(Tscores)} by default.
+#' @param alpha Optional number between 0 and 1 expressing the type I risk assumed in the 
+#' computation of the confidence ellipse, set to \code{0.05} (5 %) by default.
+#' @param varT Optional parameter expressing the variance of each PC. Set to \code{var(Tscores)} 
+#' by default.
 #' @param plottitle Optional string with the plot title. Set to \code{"Score plot"} by default.
 #' @return ggplot object with the generated score plot.
 #' @import ggplot2 stats
+#' @examples 
+#' X <- as.matrix(X)
+#' pcamodel.ref <- pcamb_classic(X[1:40,], 3, 0.05, "cent")
+#' pcaproj <- pcame(X, pcamodel.ref) # Project last observations
+#' scoreplotsimple(pcaproj$Tscores)
+#' 
+#' pcaproj <- pcame(X[-c(1:40),], pcamodel.ref) # Project all observations
+#' tags <- dotag(X[1:40,], X[-c(1:40),]) # 0's for observations used in PCA-MB
+#' scoreplotsimple(pcaproj$Tscores, pcx = 2, pcy = 3, obstag = tags)
 #' @export
 scoreplotsimple <- function(Tscores, pcx = 1, pcy  = 2, obstag = matrix(0, nrow(Tscores), 1),
                             alpha = 0.05, varT = stats::var(Tscores), plottitle = "Score plot\n"){
@@ -52,12 +65,14 @@ scoreplotsimple <- function(Tscores, pcx = 1, pcy  = 2, obstag = matrix(0, nrow(
 
   scplot <- ggplot2::ggplot(data = df.plot, ggplot2::aes(x = t1, y = t2)) +
     # Confidence ellipse
-    ggplot2::geom_path(data = T.ellipse, mapping = ggplot2::aes(x = x.ell, y = y.ell), linetype = "dashed",
-              colour = "red", size = 0.75) +
+    ggplot2::geom_path(data = T.ellipse, mapping = ggplot2::aes(x = x.ell, y = y.ell), 
+                       linetype = "dashed", colour = "red", size = 0.75) +
     ggplot2::geom_vline(xintercept = 0) + ggplot2::geom_hline(yintercept = 0) +
     # Scores (points)
-    ggplot2::geom_point(data = df.plot, mapping = ggplot2::aes(x = t1, y = t2, colour = set, shape = set),
-               size = 3, alpha = 0.5) +
+    ggplot2::geom_point(data = df.plot, mapping = ggplot2::aes(x = t1, y = t2, 
+                                                               colour = set, 
+                                                               shape = set), 
+                        size = 3, alpha = 0.5) +
     # Group series settings
     ggplot2::scale_colour_manual(name = "",
                         values = c("Obs.ref" = "blue", "Obs.new" = "red"),
@@ -65,12 +80,14 @@ scoreplotsimple <- function(Tscores, pcx = 1, pcy  = 2, obstag = matrix(0, nrow(
     ggplot2::scale_shape_manual(name = "", values = c(16, 17),
                        breaks = c("Obs.ref", "Obs.new")) +
     # Plot settings
-    ggplot2::theme_bw() + ggplot2::coord_cartesian(ylim=c(-tmaxall, tmaxall), xlim = c(-tmaxall, tmaxall)) +
+    ggplot2::theme_bw() + ggplot2::coord_cartesian(ylim=c(-tmaxall, tmaxall), xlim = c(-tmaxall, 
+                                                                                       tmaxall)) +
     ggplot2::labs(x = bquote(italic(t[.(pcx)])), y = bquote(italic(t[.(pcy)])), title = plottitle,
          subtitle = bquote(Conf.Ellipse[.(paste0((1-alpha)*100, "%"))])) +
     ggplot2::guides(colour = ggplot2::guide_legend("", override.aes = list(alpha = 1)),
                     shape = ggplot2::guide_legend("")) +
-    ggplot2::theme(legend.position = "bottom", plot.title = ggplot2::element_text(hjust = 0.5, size = 14),
+    ggplot2::theme(legend.position = "bottom", plot.title = ggplot2::element_text(hjust = 0.5, 
+                                                                                  size = 14),
           axis.title.x = ggplot2::element_text(face = "italic", size = 12),
           axis.title.y = ggplot2::element_text(face = "italic", size = 12),
           legend.direction = "vertical", legend.text = ggplot2::element_text(size = 12),
