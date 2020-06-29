@@ -3,5 +3,5 @@
 #'
 #' It is a small data set to use as a demo for the SCOUTer package. 
 #'
-#' @format A data frame with 50 rows and 5 normally distributed variables.
+#' @format A matrix data frame with 50 rows and 5 normally distributed variables.
 "X"
