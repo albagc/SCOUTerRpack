@@ -5,7 +5,11 @@
 #'
 #' @param X.zeros Matrix with the tag \code{0}.
 #' @param X.ones Matrix with the tag \code{1}.
-#' @return \code{tag.all} vector with 0-tags for observations in \code{X.zeros} and 1-tags for observations in \code{X.ones}.
+#' @return \code{tag.all} vector with 0 tags for observations in \code{X.zeros} and 
+#' 1 tags for observations in \code{X.ones}.
+#' @examples 
+#' X <- as.matrix(X)
+#' dotag(X[1:40,], X[-c(1:40),])
 #' @export
 
 dotag <- function(X.zeros = NA, X.ones = NA){

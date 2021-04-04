@@ -29,19 +29,32 @@ distplotsimple(
 \item{obstag}{Optional column vector of integers indicating the group of each
 observation (\code{0} or \code{1}). Default value set to \code{matrix(0, nrow(X), 1)}.}
 
-\item{alpha}{Optional number between 0 and 1 expressing the type I risk assumed in the compuatation of the
-Upper Control Limits set to \code{0.05} (5 \%) by default.}
+\item{alpha}{Optional number between 0 and 1 expressing the type I risk assumed in the
+computation of the Upper Control Limits (UCL) set to \code{0.05} (5 \%) by default.}
 
-\item{plottitle}{Optional string with the plot title, \code{"Distance plot"} by default.}
+\item{plottitle}{Optional string with the plot title, \code{"Distance plot"} by
+default.}
 }
 \value{
 distplotobj ggplot object with the generated distance plot.
 }
 \description{
-Returns the distance plot directly providing the coordiantes and Upper Control Limits.
+Returns the distance plot directly providing the coordinates and Upper Control Limits.
 }
 \details{
-Coordinates are expressed in terms of the Hotelling's T^2 (x-axis) and the Squared Prediction
-Error (y-axis) obtained projecting X on the provided pca model.
-Observations can be identified by the obstag input argument.
+Coordinates are expressed in terms of the Hotelling's T^2 (T^2, x-axis) and the Squared
+Prediction Error (SPE, y-axis). Observations can be identified by the obstag input argument.
+}
+\examples{
+X <- as.matrix(X)
+pcamodel.ref <- pcamb_classic(X[1:40,], 2, 0.05, "cent") # PCA-MB with first 40 
+# observations
+pcaproj <- pcame(X[-c(1:40),], pcamodel.ref) # Project last observations
+distplotsimple(pcaproj$T2, pcaproj$SPE, pcamodel.ref$limt2, pcamodel.ref$limspe,
+pcamodel.ref$ncomp)
+
+pcaproj <- pcame(X, pcamodel.ref) # Project all observations
+tags <- dotag(X[1:40,], X[-c(1:40),]) # 0's for observations used in PCA-MB
+distplotsimple(pcaproj$T2, pcaproj$SPE, pcamodel.ref$limt2, pcamodel.ref$limspe, 
+pcamodel.ref$ncomp, obstag = tags)
 }

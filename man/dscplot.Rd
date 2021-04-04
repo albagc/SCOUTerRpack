@@ -19,16 +19,19 @@ dscplot(
 \arguments{
 \item{X}{Matrix with the data to be displayed.}
 
-\item{pcamodel}{List wiht the PCA model elements.}
+\item{pcamodel}{List with the PCA model elements.}
 
 \item{obstag}{Optional column vector of integers indicating the group of each
 observation (\code{0} or \code{1}). Default value set to \code{matrix(0, nrow(X), 1)}.}
 
-\item{pcx}{Optional integer with the number of the PC in the horizontal axis. Set to \code{1} by default.}
+\item{pcx}{Optional integer with the number of the PC in the horizontal axis.
+Set to \code{1} by default.}
 
-\item{pcy}{Optional integer with the number of the PC in the vertical axis. Set to \code{2} by default.}
+\item{pcy}{Optional integer with the number of the PC in the vertical axis.
+Set to \code{2} by default.}
 
-\item{alpha}{Optional number between 0 and 1 expressing the type I risk assumed in the compuatation of the confidence ellipse,
+\item{alpha}{Optional number between 0 and 1 expressing the type I risk assumed in
+the computation of the confidence ellipse,
 set to \code{0.05} (5 \%) by default.}
 
 \item{nrow}{Optional number of rows the plot layout. Set to \code{1} by default.}
@@ -42,6 +45,14 @@ by default.}
 ggplot object with the generated score plot.
 }
 \description{
-Returns the distance plot and the score plot providing a dataset and a pca model. Observations can
-be identified by the obstag input argument.
+Returns the distance plot and the score plot providing a data matrix and a Principal Component
+Analysis (PCA) model. Observations can be identified by the obstag input argument.
+}
+\examples{
+X <- as.matrix(X)
+pcamodel.ref <- pcamb_classic(X[1:40,], 3, 0.05, "cent")
+dscplot(X, pcamodel.ref)
+dscplot(X, pcamodel.ref, nrow = 2, ncol = 1)
+tags <- dotag(X[1:40,], X[-c(1:40),])
+dscplot(X, pcamodel.ref, obstag = tags, pcy = 3)
 }
