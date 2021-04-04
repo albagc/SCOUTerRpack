@@ -14,7 +14,8 @@ scout(
   nsteps.t2 = 1,
   gspe = 1,
   gt2 = 1,
-  mode = "simple"
+  mode = "simple",
+  A = 0
 )
 }
 \arguments{
@@ -52,6 +53,8 @@ Set to \code{1} by default (linear spacing).}
 
 \item{mode}{A character indicating the type of shift that will be performed: \code{"simple"},
 \code{"steps"} or \code{"grid"}.}
+
+\item{A}{Number indicating the PC selected to perform the shift.}
 }
 \value{
 list with elements:

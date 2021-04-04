@@ -4,7 +4,7 @@
 \alias{scoutsimple}
 \title{scoutsimple}
 \usage{
-scoutsimple(X, pcaref, T2.target = NA, SPE.target = NA)
+scoutsimple(X, pcaref, T2.target = NA, SPE.target = NA, A = 0)
 }
 \arguments{
 \item{X}{Matrix with observations that will be shifted as rows.}
@@ -23,6 +23,8 @@ Set to \code{NA} by default.}
 
 \item{SPE.target}{A number indicating the target value for the SPE after the shift.
 Set to \code{NA} by default.}
+
+\item{A}{Number indicating the PC selected to perform the shift.}
 }
 \value{
 list with elements:

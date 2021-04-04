@@ -26,6 +26,7 @@
 #' Set to \code{1} by default (linear spacing).
 #' @param mode A character indicating the type of shift that will be performed: \code{"simple"}, 
 #' \code{"steps"} or \code{"grid"}.
+#' @param A PC selected to perform the shift.
 #' @return list with elements: 
 #' * \code{X}: matrix with the new and shifted data.
 #' * \code{SPE}: SPE of each one of the generated outliers in the list element \code{X}. 
@@ -44,7 +45,7 @@
 #' outscout <- scout(X, pcamodel.ref, T2.y = matrix(40, nrow(X), 1), mode = "simple")
 #' @export
 scout <- function(X, pcaref, T2.y = NA, SPE.y = NA, nsteps = 1, nsteps.spe = 1,
-                       nsteps.t2 = 1, gspe = 1, gt2 = 1, mode = "simple"){
+                       nsteps.t2 = 1, gspe = 1, gt2 = 1, mode = "simple", A = 0){
   T2.target.val <- T2.y
   SPE.target.val <- SPE.y
   n.steps.val <- nsteps
@@ -53,15 +54,18 @@ scout <- function(X, pcaref, T2.y = NA, SPE.y = NA, nsteps = 1, nsteps.spe = 1,
   gammaSPE.val <- gspe
   gammaT2.val <- gt2
   if (mode == "simple"){
-    outscout <- scoutsimple(X, pcaref, T2.target = T2.target.val, SPE.target = SPE.target.val)
+    outscout <- scoutsimple(X, pcaref, A = A, 
+                            T2.target = T2.target.val, SPE.target = SPE.target.val)
   } else if (mode == "steps"){
-    outscout <- scoutsteps(X, pcaref, T2.target = T2.target.val, SPE.target = SPE.target.val, 
+    outscout <- scoutsteps(X, pcaref, A = A,
+                           T2.target = T2.target.val, SPE.target = SPE.target.val, 
                            nsteps = n.steps.val,
                            gspe = gammaSPE.val, gt2 = gammaT2.val)
       } else if (mode == "grid"){
-    outscout <- scoutgrid(X, pcaref, T2.target = T2.target.val, SPE.target = SPE.target.val, 
-                          nsteps.spe = SPE.n.steps.val,
-                          nsteps.t2 = T2.n.steps.val, gspe = gammaSPE.val, gt2 = gammaT2.val)
+    outscout <- scoutgrid(X, pcaref, A = A, T2,
+                          target = T2.target.val, SPE.target = SPE.target.val, 
+                          nsteps.spe = SPE.n.steps.val, nsteps.t2 = T2.n.steps.val, 
+                          gspe = gammaSPE.val, gt2 = gammaT2.val)
   }
   return(outscout)
 }

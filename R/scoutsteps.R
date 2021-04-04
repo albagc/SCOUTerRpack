@@ -20,6 +20,7 @@
 #' Set to \code{1} by default (linear spacing).
 #' @param gt2 A number indicating the term that will tune the spacing between steps for the SPE. 
 #' Set to \code{1} by default (linear spacing).
+#' @param A PC selected to perform the shift.
 #' @return list with elements: 
 #' * \code{X}: matrix with the new and shifted data.
 #' * \code{SPE}: SPE of each one of the generated outliers in the list element \code{X}. 
@@ -37,7 +38,8 @@
 #' outsteps <- scoutsteps(X, pcamodel.ref, SPE.target = matrix(50, nrow(X), 1), nsteps = 4, 
 #' gspe = 0.3)
 #' @export
-scoutsteps <- function(X, pcaref, T2.target = NA, SPE.target = NA, nsteps = 1, gspe = 1, gt2 = 1) {
+scoutsteps <- function(X, pcaref, T2.target = NA, SPE.target = NA, nsteps = 1, 
+                       gspe = 1, gt2 = 1, A = 0) {
   # Calculate initial values for SPE and T^2 of observations in X.
   if (is.null(dim(X)) == TRUE){
     X <- t(as.matrix(X))
@@ -64,11 +66,17 @@ scoutsteps <- function(X, pcaref, T2.target = NA, SPE.target = NA, nsteps = 1, g
   spe.refs <- as.vector(kronecker(matrix(1, nsteps, 1), SPE.0))
   t2.refs <- as.vector(kronecker(matrix(1, nsteps, 1), T2.0))
   Xsteps <- kronecker(matrix(1, nsteps, 1), Xaux)
+  
+  if (A == 0){
+    a <- sqrt(t2.targets / t2.refs) - 1
+  } else {
+    tA <- pcaout$Tscores[,A]
+    a <- sqrt((1 + pcaref$lambda[A]*(t2.targets - t2.refs)/tA)) - 1
+  }
 
-  a <- sqrt(t2.targets / t2.refs) - 1
   b <- sqrt(spe.targets / spe.refs) - 1
 
-  Xout <- xshift(Xsteps, pcaref$P, a = a, b = b)
+  Xout <- xshift(Xsteps, pcaref$P, a = a, b = b, A = A)
 
   if (pcaref$prepro == 'cent'){
     Xrec <- Xout + pcaref$m

@@ -14,6 +14,7 @@
 #' Set to \code{NA} by default.
 #' @param SPE.target A number indicating the target value for the SPE after the shift. 
 #' Set to \code{NA} by default.
+#' @param A PC selected to perform the shift.
 #' @return list with elements: 
 #' * \code{X}: matrix with the new and shifted data.
 #' * \code{SPE}: SPE of each one of the generated outliers in the list element \code{X}. 
@@ -27,7 +28,7 @@
 #' # Shift a set of observations increasing only the T^2 in one step:
 #' outsimple <- scoutsimple(X, pcamodel.ref, T2.target = matrix(40, nrow(X), 1))
 #' @export
-scoutsimple <- function(X, pcaref, T2.target = NA, SPE.target = NA){
+scoutsimple <- function(X, pcaref, T2.target = NA, SPE.target = NA, A = 0){
   if (is.null(dim(X)) == TRUE){
     X <- t(as.matrix(X))
   }
@@ -41,11 +42,15 @@ scoutsimple <- function(X, pcaref, T2.target = NA, SPE.target = NA){
     T2.target = T2.0}
   if (is.na(SPE.target[1]) == TRUE){
     SPE.target = SPE.0}
-
-  a <- sqrt(T2.target / T2.0) - 1
+  if (A == 0){
+    a <- sqrt(T2.target / T2.0) - 1
+  } else {
+    tA <- pcaout$Tscores[,A]
+    a <- sqrt((1 + pcaref$lambda[A]*(T2.target - T2.0)/tA)) - 1
+  }
   b <- sqrt(SPE.target / SPE.0) - 1
 
-  Xout <- xshift(X, pcaref$P, a = a, b = b)
+  Xout <- xshift(X, pcaref$P, a = a, b = b, A = A)
 
   outscout <- list()
   outscout$X <- Xout

@@ -4,7 +4,7 @@
 \alias{xshift}
 \title{xshift}
 \usage{
-xshift(X, P, a, b)
+xshift(X, P, a, b, A = 0)
 }
 \arguments{
 \item{X}{Matrix with observations that will be shifted.}
@@ -14,6 +14,8 @@ xshift(X, P, a, b)
 \item{a}{A number or vector tuning the shift in the direction of its projection.}
 
 \item{b}{A number or vector tuning the shift in the direction of its residual.}
+
+\item{A}{Number indicating the PC selected to perform the shift.}
 }
 \value{
 Matrix with shifted observation as rows, keeping the order of the input matrix

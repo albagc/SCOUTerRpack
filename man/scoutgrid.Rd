@@ -12,7 +12,8 @@ scoutgrid(
   nsteps.t2 = 1,
   nsteps.spe = 1,
   gspe = 1,
-  gt2 = 1
+  gt2 = 1,
+  A = 0
 )
 }
 \arguments{
@@ -44,6 +45,8 @@ Set to \code{1} by default (linear spacing).}
 
 \item{gt2}{A number indicating the term that will tune the spacing between steps for the SPE.
 Set to \code{1} by default (linear spacing).}
+
+\item{A}{Number indicating the PC selected to perform the shift.}
 }
 \value{
 list with elements:

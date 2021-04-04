@@ -22,6 +22,7 @@
 #' Set to \code{1} by default (linear spacing).
 #' @param gt2 A number indicating the term that will tune the spacing between steps for the SPE. 
 #' Set to \code{1} by default (linear spacing).
+#' @param A PC selected to perform the shift.
 #' @return list with elements: 
 #' * \code{X}: matrix with the new and shifted data.
 #' * \code{SPE}: SPE of each one of the generated outliers in the list element \code{X}. 
@@ -38,7 +39,7 @@
 #' SPE.target = matrix(50, nrow(X), 1), nsteps.t2 = 3, nsteps.spe = 2, gspe = 4)
 #' @export
 scoutgrid <- function(X, pcaref, T2.target  = NA, SPE.target = NA, nsteps.t2 = 1, nsteps.spe = 1,
-                       gspe = 1, gt2 = 1){
+                       gspe = 1, gt2 = 1, A = 0){
   # Calculate initial values for SPE and T^2 of observations in X.
   if (is.null(dim(X)) == TRUE){
     X <- t(as.matrix(X))
@@ -65,9 +66,14 @@ scoutgrid <- function(X, pcaref, T2.target  = NA, SPE.target = NA, nsteps.t2 = 1
   spe.refs <- kronecker(matrix(1, nsteps.spe * nsteps.t2, 1), SPE.0)
   t2.refs <- kronecker(matrix(1, nsteps.spe * nsteps.t2, 1), T2.0)
   Xgrid <- kronecker(matrix(1, nsteps.spe * nsteps.t2, 1), Xaux)
-  a <- sqrt(t2.targets / t2.refs) - 1
+  if (A == 0){
+    a <- sqrt(t2.targets / t2.refs) - 1
+  } else {
+    tA <- pcaout$Tscores[,A]
+    a <- sqrt((1 + pcaref$lambda[A]*(t2.targets - t2.refs)/tA)) - 1
+  }
   b <- sqrt(spe.targets / spe.refs) - 1
-  Xout <- xshift(Xgrid, pcaref$P, a = a, b = b)
+  Xout <- xshift(Xgrid, pcaref$P, a = a, b = b, A = A)
   if (pcaref$prepro == 'cent'){
     Xrec <- Xout + pcaref$m
   } else if (pcaref$prepro == 'autosc') {
