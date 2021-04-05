@@ -69,7 +69,7 @@ scoutgrid <- function(X, pcaref, T2.target  = NA, SPE.target = NA, nsteps.t2 = 1
   if (A == 0){
     a <- sqrt(t2.targets / t2.refs) - 1
   } else {
-    tA <- pcaout$Tscores[,A]
+    tA <- rep(pcaout$Tscores[,A], 1,nsteps)^2
     a <- sqrt((1 + pcaref$lambda[A]*(t2.targets - t2.refs)/tA)) - 1
   }
   b <- sqrt(spe.targets / spe.refs) - 1

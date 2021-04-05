@@ -62,8 +62,8 @@ scout <- function(X, pcaref, T2.y = NA, SPE.y = NA, nsteps = 1, nsteps.spe = 1,
                            nsteps = n.steps.val,
                            gspe = gammaSPE.val, gt2 = gammaT2.val)
       } else if (mode == "grid"){
-    outscout <- scoutgrid(X, pcaref, A = A, T2,
-                          target = T2.target.val, SPE.target = SPE.target.val, 
+    outscout <- scoutgrid(X, pcaref, A = A, 
+                          T2.target = T2.target.val, SPE.target = SPE.target.val, 
                           nsteps.spe = SPE.n.steps.val, nsteps.t2 = T2.n.steps.val, 
                           gspe = gammaSPE.val, gt2 = gammaT2.val)
   }

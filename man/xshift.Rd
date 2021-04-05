@@ -15,7 +15,7 @@ xshift(X, P, a, b, A = 0)
 
 \item{b}{A number or vector tuning the shift in the direction of its residual.}
 
-\item{A}{Number indicating the PC selected to perform the shift.}
+\item{A}{PC selected to perform the shift.}
 }
 \value{
 Matrix with shifted observation as rows, keeping the order of the input matrix

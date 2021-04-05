@@ -25,13 +25,13 @@ xshift <- function(X, P, a, b, A = 0){
   Xout <- matrix(NA, nrow = 0, ncol = ncol(X))
   if (A == 0){
     for (ni in 1:nrow(X)){
-      x2 <- t(X[ni,,drop = F] +  a[ni] * (P %*% t(P)) %*% t(X[ni,,drop = F]) + 
+      x2 <- t(X[ni,] +  a[ni] * (P %*% t(P)) %*% t(X[ni,,drop = F]) + 
         b[ni] * (I - (P %*% t(P))) %*% t(X[ni,,drop = F]))
       Xout <- rbind(Xout, x2)
     }
   } else {
     for (ni in 1:nrow(X)){
-      x2 <- t(X[ni,,drop = F] +  
+      x2 <- t(X[ni,] +  
                 a[ni] * (P[,A,drop = F] %*% t(P[,A,drop = F])) %*% t(X[ni,,drop = F]) + 
                 b[ni] * (I - (P %*% t(P))) %*% t(X[ni,,drop = F]))
       Xout <- rbind(Xout, x2)

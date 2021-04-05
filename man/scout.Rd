@@ -54,7 +54,7 @@ Set to \code{1} by default (linear spacing).}
 \item{mode}{A character indicating the type of shift that will be performed: \code{"simple"},
 \code{"steps"} or \code{"grid"}.}
 
-\item{A}{Number indicating the PC selected to perform the shift.}
+\item{A}{PC selected to perform the shift.}
 }
 \value{
 list with elements:

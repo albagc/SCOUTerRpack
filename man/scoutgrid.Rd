@@ -46,7 +46,7 @@ Set to \code{1} by default (linear spacing).}
 \item{gt2}{A number indicating the term that will tune the spacing between steps for the SPE.
 Set to \code{1} by default (linear spacing).}
 
-\item{A}{Number indicating the PC selected to perform the shift.}
+\item{A}{PC selected to perform the shift.}
 }
 \value{
 list with elements:

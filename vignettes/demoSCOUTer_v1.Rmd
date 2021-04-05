@@ -9,7 +9,7 @@ output: rmarkdown::html_vignette
   #   number_sections: yes
   #   toc: yes
 vignette: >
-  %\VignetteIndexEntry{SCOUTer demo} 
+  %\VignetteIndexEntry{SCOUTer demo_update_v.1} 
   %\VignetteEncoding{UTF-8} 
   %\VignetteEngine{knitr::rmarkdown}
 ---

@@ -24,7 +24,7 @@ Set to \code{NA} by default.}
 \item{SPE.target}{A number indicating the target value for the SPE after the shift.
 Set to \code{NA} by default.}
 
-\item{A}{Number indicating the PC selected to perform the shift.}
+\item{A}{PC selected to perform the shift.}
 }
 \value{
 list with elements:

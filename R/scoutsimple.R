@@ -46,7 +46,7 @@ scoutsimple <- function(X, pcaref, T2.target = NA, SPE.target = NA, A = 0){
     a <- sqrt(T2.target / T2.0) - 1
   } else {
     tA <- pcaout$Tscores[,A]
-    a <- sqrt((1 + pcaref$lambda[A]*(T2.target - T2.0)/tA)) - 1
+    a <- sqrt((1 + pcaref$lambda[A]*(T2.target - T2.0)/tA^2)) - 1
   }
   b <- sqrt(SPE.target / SPE.0) - 1
 
