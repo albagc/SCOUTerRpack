@@ -14,4 +14,4 @@ Control your simulations with SCOUTer in an *easy and interactive* way.
 
 *!!Important:* This github repo contains an unstable version updated regularly. For the stable and CRAN approved version, check: https://cran.r-project.org/web/packages/SCOUTer/index.html
 
-:) 
+Enjoy!
