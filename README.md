@@ -1,5 +1,5 @@
 # Simulate Controlled OUTliers - SCOUTer
-## R version
+(R version)
 SCOUTer is a set of functions that open the door towards a new way of 
 simulating outliers. Using Principal Component Analysis (PCA) as a base 
 model, SCOUTer enables the user to control exactly how the simulated 
